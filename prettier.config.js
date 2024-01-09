@@ -1,7 +1,7 @@
 /** @type {import('prettier').Config} */
 
 module.exports = {
-  endOfLine: "lf",
+  endOfLine: "auto",
   semi: false,
   singleQuote: false,
   jsxSingleQuote: true,
@@ -14,7 +14,7 @@ module.exports = {
   proseWrap: "always",
   // printWidth: 120, попробовать 120
   // printWidth: 80,
-  printWidth: 120,
+  printWidth: 80,
   bracketSameLine: false,
   // "bracketSameLine": true, попробовать true - указывает на то, что Prettier должен помещать закрывающую скобку в тот же строку, что и последний атрибут элемента, вместо того чтобы помещать ее на новую строку.
   bracketSpacing: true,

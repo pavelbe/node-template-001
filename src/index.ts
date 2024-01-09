@@ -4,7 +4,9 @@ import {help} from "./commands/helpCommand";
 import {start} from "@/commands/startCommand";
 
 
-console.log("Hello World! ☺️")
+
+
+             console.log("Hello World! ☺️")
 
 const startBot = () => {
     console.log("ok")
