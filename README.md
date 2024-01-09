@@ -68,63 +68,7 @@ bun run clean-build
 ```
 Открывайте консоль и введите `npm start` или `pnpm start` для запуска приложения.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-
 
 --
-09012024
-
-## TODOS Pavel 777
-
-## ИИ
-https://www.safurai.com - Safurai is the AI Code Assistant that saves you time in changing, optimizing, and searching code.
-https://www.phind.com/ - Phind - Get instant answers, explanations, and examples for all of your technical questions.
-https://sourcegraph.com/ - Sourcegraph | Code AI platform
-https://writer.mintlify.com/ - Documentation that just
-appears as you build
-https://poe.com/ - Poe Assistant
-
-## Верстка
-https://css-live.ru/articles-css/udivitelnyj-i-neizvestnyj-inline-block.html - Удивительный и неизвестный inline-block
-https://bureau.ru/soviet/20210422/ - Вёрстка слева направо и сверху вниз
-https://bureau.ru/soviet/20220526/ - Когда правильно padding, а когда margin?
-https://adamwathan.me/css-utility-classes-and-separation-of-concerns/ - CSS Utility Classes and "Separation of Concerns"
-
-## SEO
-https://www.youtube.com/watch?v=jAP99IQA8Hs - How To Make Money On Google with ChatGPT ($50 A Day AI Side Hustle)
-
-
-
-## Деплой
-https://www.youtube.com/watch?v=nsGusxzitoc - Next.js setup: Деплой на VPS | Jest | Playwright | CI/CD | Sentry
-
-
-## NPM
-https://pqina.nl/filepond/  - A JavaScript library to add file uploads to your forms
-https://uppy.io/ - The next open source file uploader for web browsers
-
-
-
-
-## Прикольные проекты и сайты
-https://www.speare.com/ - Работа со статьей, как с доской
-https://fullcalendar.io/
-
-
-
-## Realtime
-https://pusher.com/ - Pusher
-https://www.pubnub.com/ - PubNub
-https://socket.io/ - Socket.IO
-https://kafka.apache.org/index.html - Kafka
-https://www.svix.com/ - Svix
-
-
-
----
-
-
-
+today 09.01.2024
 
