@@ -1,9 +1,11 @@
+// prettier.config.js
 /** @type {import('prettier').Config} */
 
 module.exports = {
-  endOfLine: "auto",
+  endOfLine: "crlf",
+  // endOfLine: "CRLF",
   semi: false,
-  singleQuote: false,
+  singleQuote: true,
   jsxSingleQuote: true,
   // singleQuote: false, jsxSingleQuote: true: Это интересный выбор — использовать двойные кавычки для JavaScript и одинарные для JSX. Это вопрос личных предпочтений и единообразия внутри вашей команды.
 
@@ -30,14 +32,8 @@ module.exports = {
     "",
     "^[./]",
   ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
-  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true,
+  importOrderParserPlugins: ["typescript", "decorators-legacy"],
   plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports"
   ],
 }

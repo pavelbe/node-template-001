@@ -3,23 +3,55 @@
     "node": true,
     "es2022": true
   },
-  "extends": ["prettier", "plugin:@typescript-eslint/recommended-type-checked"
-  ],
+  "extends": ["prettier", "plugin:@typescript-eslint/recommended-type-checked"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-//      "project": true
+    "project": "./tsconfig.json"
   },
   "rules": {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto", "singleQuote": true }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "crlf",
+        "singleQuote": true,
+        "semi": false,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "arrowParens": "avoid"
+      }
+    ],
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": "off",
     "react/no-unescaped-entities": "off"
   },
-  "plugins": [
-    "@typescript-eslint","unused-imports"
-  ],
-  "settings": {}
+  "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
+  "settings": {
+    "importOrder": [
+      "<THIRD_PARTY_MODULES>",
+      "^@types$",
+      "^@/types/(.*)$",
+      "^@/config/(.*)$",
+      "^@/lib/(.*)$",
+      "^@/app/(.*)$",
+      "",
+      "^[./]"
+    ],
+    "importOrderSeparation": false,
+    "importOrderSortSpecifiers": true,
+    "importOrderBuiltinModulesToTop": true,
+    "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+    "importOrderMergeDuplicateImports": true,
+    "importOrderCombineTypeAndValueImports": true,
+    "useTabs": false
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "tsconfig.tsbuildinfo",
+    "rename-to-mjs*.js",
+    "*.d.ts",
+    "prettier.config.d.ts"
+  ]
 }
-
