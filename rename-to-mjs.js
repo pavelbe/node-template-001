@@ -1,4 +1,7 @@
-// rename-to-mjs_v5.js
+// rename-to-mjs.js (5 ver.)
+
+// rename-to-mjs_v5 - renames .js to .mjs and updates imports to support the JavaScript module stack.
+// rename-to-mjs_v5 - переименовывает .js в .mjs и обновляет импорты для поддержки модульного стека JavaScript.
 
 import { promises as fs } from 'fs';
 import path from 'path';
