@@ -9,6 +9,8 @@ This is a Node.js template project configured to use TypeScript and modern JavaS
 
 ## Script `rename-to-mjs.js`
 The script renames `.js` files to `.mjs` and updates import paths in project files. It uses asynchronous operations for efficient file processing and caches updated import paths for performance improvement.
+- Run `node rename-to-mjs.js` for English language output (default).
+- Run `node rename-to-mjs.js --ru` for Russian language output.
 
 ## Support This Project
 If you find this project helpful, please consider giving it a star on GitHub. Your support is greatly appreciated and motivates continuous improvement and development of new useful tools.

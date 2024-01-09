@@ -12,12 +12,7 @@
     "dev": "tsx watch ./src/index.ts",
     "prettier-chack": "prettier --check \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
     "prettier-write": "prettier --write \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
-    "eslint": "eslint  \"**/*.{js,ts,tsx}\"",
-    "prettier-unverefied": "prettier --write \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
-    "format:check-unverefied": "prettier --check \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
-    "format:write-unverefied": "prettier --write \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
-    "lint-unverefied-unverefied": "eslint . --ext .ts,.tsx",
-    "lint:fix-unverefied": "eslint . --ext .ts,.tsx --fix"
+    "eslint": "eslint  \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.14",

@@ -5,7 +5,15 @@
 
 import { promises as fs } from 'fs'
 import path from 'path'
-import messages from './messages.json' with { type: 'json' }
+
+// import messages from './messages.json' with { type: 'json' }
+
+async function loadMessages() {
+  const data = await fs.readFile('./messages.json', 'utf-8')
+  return JSON.parse(data)
+}
+
+const messages = await loadMessages()
 
 const directory = 'dist'
 const importPathCache = new Map()
