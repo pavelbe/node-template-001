@@ -23,8 +23,7 @@
       }
     ],
     "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": "off",
-    "react/no-unescaped-entities": "off"
+    "unused-imports/no-unused-vars": "off"
   },
   "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
   "settings": {

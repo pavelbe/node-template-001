@@ -1,0 +1,20 @@
+{
+  "en": {
+    "fileChanged": "File: {filePath}\nModified import: {oldImport} -> {newImport}",
+    "fileRenamed": "Renamed: {fullPath} -> {newPath}",
+    "fileProcessingError": "Error processing file {fullPath}:",
+    "allFilesRenamed": "All files successfully renamed to .mjs and imports updated",
+    "genericError": "An error occurred:",
+    "scriptCompleted": "Script executed successfully.",
+    "scriptExecutionError": "Script execution error:"
+  },
+  "ru": {
+    "fileChanged": "Файл: {filePath}\nИзмененный импорт: {oldImport} -> {newImport}",
+    "fileRenamed": "Переименовано: {fullPath} -> {newPath}",
+    "fileProcessingError": "Ошибка обработки файла {fullPath}:",
+    "allFilesRenamed": "Все файлы успешно переименованы в .mjs и обновлены импорты",
+    "genericError": "Произошла ошибка:",
+    "scriptCompleted": "Скрипт выполнен успешно.",
+    "scriptExecutionError": "Ошибка выполнения скрипта:"
+  }
+}
