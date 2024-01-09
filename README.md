@@ -1,6 +1,15 @@
+
+## Support the Project
+
+If you find this project helpful, please consider giving it a star on GitHub. Your support is greatly appreciated and motivates me to continue improving and creating more useful projects.
+
+[⭐ Star this project on GitHub!](https://github.com/pavelbe/node-template-001)
+
+
 ## Credits
 When using this project, please provide proper credit to the original author, [pavelbe](https://github.com/pavelbe), including a link back to the GitHub repository.
 
+-----------------------------------
 
 # Node Template 001
 
