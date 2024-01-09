@@ -1,3 +1,7 @@
+## Credits
+When using this project, please provide proper credit to the original author, [pavelbe](https://github.com/pavelbe), including a link back to the GitHub repository.
+
+
 # Node Template 001
 
 Это шаблонный проект Node.js, настроенный для использования TypeScript и современных возможностей JavaScript.
@@ -37,7 +41,7 @@
 ## Установка и Запуск
 
 ```bash
-1. Клонируйте репозиторий:   git clone https://github.com/your-username/node-template-001.git
+1. Клонируйте репозиторий:   git clone https://github.com/pavelbe/node-template-001.git
 
 2. Установите зависимости:
 npm install
