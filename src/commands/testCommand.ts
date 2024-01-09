@@ -1,5 +1,5 @@
-// src/commands/helpCommand.ts
+// src/commands/testCommand.ts
 
-export const help = () => {
-  console.log('Help me please!')
+export const test = () => {
+  console.log('It works!👍')
 }

@@ -2,14 +2,13 @@
 
 import { start } from '@/commands/startCommand'
 
-import { help } from './commands/helpCommand'
+import { test } from './commands/testCommand'
 
-console.log('Hello World! ☺️')
+console.log('👋 Hello world...')
 
 const startBot = () => {
-  console.log('ok')
   start()
-  help()
+  test()
 }
 
 startBot()
