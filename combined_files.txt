@@ -1,0 +1,8200 @@
+// package.json
+{
+  "name": "nextjs-template-pavelbe1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --experimental-https --turbo",
+    "preview": "next build && next start",
+    "generate": "prisma generate",
+    "push": "prisma db push",
+    "seed": "tsx prisma/seed.ts",
+    "reset": "prisma migrate reset --force && prisma db push",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio",
+    "email:dev": "email dev --dir src/components/emails -p 3001",
+    "sort": "npx sort-package-json",
+    "build": "next build",
+    "build2": "prisma generate && prisma db push && next build",
+    "prettier": "prettier --write \"***.{ts,tsx,md,mdx,css,scss}\" --cache",
+    "format:write": "prettier --write \"**/*.{ts,tsx,md,mdx,css,scss}\" --cache",
+    "lint": "next lint",
+    "shadcn": "pnpm dlx shadcn-ui@latest add",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^1.0.12",
+    "@hookform/resolvers": "^3.3.3",
+    "@prisma/client": "^5.7.1",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@tanstack/react-query": "^5.15.5",
+    "@tanstack/react-query-devtools": "^5.15.5",
+    "@tanstack/react-table": "^8.11.2",
+    "@types/nodemailer": "^6.4.14",
+    "bcrypt": "^5.1.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "focus-trap-react": "^10.2.3",
+    "framer-motion": "^10.16.16",
+    "html-react-parser": "^5.0.11",
+    "lucide-react": "^0.303.0",
+    "ms": "^2.1.3",
+    "next": "14.0.4",
+    "next-auth": "5.0.0-beta.4",
+    "next-themes": "^0.2.1",
+    "nodemailer": "^6.9.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.2",
+    "react-markdown": "^9.0.1",
+    "react-wrap-balancer": "^1.1.0",
+    "sharp": "^0.33.1",
+    "sonner": "^1.3.1",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.8.0",
+    "zod": "^3.22.4",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tanstack/eslint-plugin-query": "^5.14.6",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "address": "^2.0.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "next-secure-headers": "^2.2.0",
+    "postcss": "^8.4.32",
+    "prettier": "3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.10",
+    "prisma": "^5.7.1",
+    "tailwindcss": "^3.4.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// tailwind.config.ts
+
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./components*.{ts,tsx,js,jsx,md,mdx}",
+    "./app*.{ts,tsx,js,jsx,md,mdx}",
+    "./src*.{ts,tsx,js,jsx,md,mdx}",
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
+      screens: {
+        "2xl": "1400px",
+
+        
+        
+        
+        
+      },
+    },
+    extend: {
+      
+      
+      
+      
+      
+      
+
+      backgroundImage: {
+        
+      },
+
+      screens: {
+        xxs: "360px",
+        xs: "480px",
+        "3xl": "1800px",
+        
+      },
+      fontFamily: {
+        
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        comfortaa: ["var(--font-comfortaa)", ...fontFamily.sans],
+        montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
+        
+        
+      },
+      fontSize: {
+        
+        
+        
+      },
+      boxShadow: {
+        
+      },
+      gridTemplateColumns: {
+        
+      },
+      colors: {
+        brandGreenColor: "#00db84",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        
+        
+        
+        
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+
+        move: {
+          from: {
+            opacity: 0,
+            transform: "translateY(0px) translateX(0px)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translateY(-4px) translateX(4px)",
+          },
+        },
+        fade: {
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        },
+      },
+      animation: {
+        lanuch: "move 1s linear infinite",
+        fade: "fade 1s linear forwards",
+        fade2: "fade2 1s linear forwards",
+
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "out",
+    "declaration": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "checkJs": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@*.ts", "***.ts"],
+  "exclude": ["node_modules"],
+
+}
+
+
+
+
+
+
+
+
+
+
+// prisma/schema.prisma
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+
+
+model User {
+  id             String         @id @default(cuid())
+  name           String
+  email          String         @unique
+  emailVerified  DateTime?      @map("email_verified")
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  password       String?
+  hashedPassword String?
+  phone          String?
+  role           Role           @default(USER)
+  isBlocked      Boolean        @default(false) @map("is_blocked")
+  blockedAt      DateTime?      @map("blocked_at")
+  notification   Notification[]
+  auditLog       AuditLog[]
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  deletedAt      DateTime?      @map("deleted_at")
+
+  @@map("users")
+}
+
+enum Role {
+  USER
+  MANAGER
+  ADMIN
+  SUPERADMIN
+  SYSTEM
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Feedback {
+  id        String         @id @default(cuid())
+  message   String
+  type      FeedbackType
+  status    FeedbackStatus @default(UNREAD)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@map("feedbacks")
+}
+
+enum FeedbackType {
+  BUG
+  QUESTION
+  SUGGESTION
+  REVIEW
+  OTHER
+}
+
+enum FeedbackStatus {
+  UNREAD
+  READ
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  description String?
+  timestamp   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/actions/feedback.ts
+
+
+"use server"
+import nodemailer from 'nodemailer';
+import { createFeedbackFormSchemaType } from "@/schemas/FeedbackFormSchema"
+import prismadb from "@/lib/prisma/prismadb"
+import type { Feedback } from "@prisma/client"
+import { auth } from "@/lib/auth/auth"
+import {siteConfig} from "@/config"
+import { emailOptions } from "@/config/emailOptions"
+
+
+
+export async function sendFeedbackEmail( id: string, type: string, message: string) {
+    console.log ("sendingEmail...")
+    console.log(`id: ${id}, type: ${type}, message: ${message}`)
+
+    const now = new Date();
+    const dateTimeStr = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear().toString().slice(-2)} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    const senderEmail = siteConfig.email
+
+    let emoji;
+    switch (type) {
+        case 'BUG':
+            emoji = '🔴'; 
+            break;
+        case 'QUESTION':
+        case 'REVIEW':
+            emoji = '🟡'; 
+            break;
+        default:
+            emoji = '🟢'; 
+            break;
+    }
+
+    try {
+        const transporter = nodemailer.createTransport( {
+
+            host: "smtp.yandex.ru",
+            port: 465,
+            secure: true,
+            auth : {
+                user: emailOptions.user,
+                pass: emailOptions.pass
+            }
+        } );
+
+        const mailOptions = {
+            from: emailOptions.fromAdmin,
+            to: senderEmail,
+            subject: `${emoji} Обратная связь с REMONT-TELEFONOV-PTZ.RU - ${dateTimeStr}`,
+            
+            html: `
+       <!DOCTYPE html>
+            <html>
+            <body>
+              <h2>Здравствуйте! Вы получили обратную связь:</h2>
+              <p><strong>Сообщение:</strong> ${message}</p>
+              <p><strong>Тип:</strong> ${type.toLowerCase()}</p>
+              <p><strong>ID:</strong> ${id}</p>
+              <p><strong>Дата и время:</strong> ${dateTimeStr}</p>
+            </body>
+            </html>
+      `,
+        }
+        return await transporter.sendMail(mailOptions);
+
+    }
+    catch (err) {
+
+        console.log(`Error sending email: ${err}`);
+        throw new Error("Error sending email")
+    }
+}
+
+
+export async function createFeedback(data: createFeedbackFormSchemaType) {
+ const user = await auth()
+  console.log(user)
+
+  if (!user) {
+    throw new Error("Ошибка авторизации")
+  }
+
+  const { message, feedbackType } = data
+
+    console.log(data)
+    console.log(`message: ${message}, feedbackType: ${feedbackType}`)
+
+    const feedback : any  = await prismadb.feedback.create({
+      data: {
+          message: message,
+          type: feedbackType.toUpperCase() as Feedback["type"],
+      },
+    })
+
+
+    console.log(`id: ${feedback.id} , message: ${feedback.message}, feedbackType: ${feedback.type}`)
+
+    await sendFeedbackEmail(feedback.id, feedback.type, feedback.message)
+
+    
+  }
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/actions/profile.ts
+
+
+"use server";
+import prismadb from "@/lib/prisma/prismadb"
+import {profileFormSchema} from "@/schemas/ProfileFormSchema"
+import { z } from "zod";
+
+import {getCurrentSession} from "@/lib/auth/auth"
+
+export async function updateProfile({name, image}: z.infer<typeof profileFormSchema>) {
+    console.log(`Мы в updateProfile: name: ${name}, image: ${image}`)
+    
+    const session = await getCurrentSession();
+
+    if (!session) throw new Error("Вы должны войти в систему, чтобы обновить свой профиль.");
+    
+
+    const dbUser = await prismadb.user.findUnique({
+        where: {
+            id: session.user.id,
+        },
+    });
+
+    if (!dbUser) throw new Error("Пользователь не найден.");
+
+    try {
+       await prismadb.user.update({
+            where: {
+                id: session.user.id,
+            },
+            data: {
+                name: name,
+                image: image,
+            },
+        });
+       
+
+    }
+    catch (err) {
+        throw new Error("Произошла ошибка при обновлении профиля.");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+// src/app/error.tsx
+
+
+"use client"
+
+
+import { useEffect } from "react"
+import { Button } from "@/ui/button"
+import { Frown } from "lucide-react"
+
+export default function Error({ error, reset }: { error?: Error & { digest?: string }; reset: () => void }) {
+  useEffect(() => {
+    
+    console.error(error)
+  }, [error])
+
+  return (
+    <main className='flex h-screen flex-col items-center justify-center gap-2 sm:container'>
+      <Frown className='h-12 w-12 text-blue-500' />
+      <h2 className='text-xl font-semibold'>Произошла ошибка</h2>
+      <p className='max-w-lg text-center text-gray-500 dark:text-gray-400'>
+        {}
+        {}
+        {}
+        Произошла ошибка в нашей системе. Пожалуйста, попробуйте еще раз.
+      </p>
+      <Button
+        className='mt-4 rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-400 dark:focus:ring-offset-gray-800'
+        onClick={() => reset()}
+      >
+        Попробовать снова
+      </Button>
+    </main>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/layout.tsx
+import "@/styles/globals.css"
+
+
+
+
+
+import type { Metadata, Viewport } from "next"
+import { siteConfig } from "@/config"
+import Providers from "@/providers/providers"
+import { fontComfortaa, fontMontserrat, fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { Analytics } from "@/components/analytics"
+
+const fontClasses = [fontComfortaa.variable, fontMontserrat.variable, fontSans.variable]
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+}
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
+  other: {
+    baseUrl: siteConfig.url,
+    codeStatus: "200",
+  },
+  generator: "Next.js",
+
+  title: {
+    default: siteConfig.formattedNameAndAddressAndPhoneAndEmoji,
+    template: `%s - ${siteConfig.formattedNameAndPhone}`,
+  },
+  description: siteConfig.description,
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  keywords: [
+    "ремонт телефонов",
+    "ремонт айфонов",
+    "ремонт ноутбуков",
+    "ремонт компьютеров",
+    "сервисный центр петрозаводск",
+  ],
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: "google-verification-code",
+    yandex: "yandex-verification-code",
+  },
+
+  authors: [
+    {
+      name: "Super User",
+    },
+  ],
+  creator: "Super User",
+  publisher: "Super User",
+  twitter: {
+    creator: "Super User",
+    title: "Super User",
+    description: "Super User",
+    card: "summary_large_image", 
+    site: "https:
+  },
+  openGraph: {
+    title: siteConfig.formattedNameAndAddressAndPhoneAndEmoji,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    type: "website",
+    locale: "ru_RU",
+    
+    images: [
+      {
+        url: "https:
+        width: 1920,
+        height: 1080,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+}
+
+
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang='ru'>
+      <body className={cn("min-h-screen scroll-smooth bg-background font-sans antialiased", ...fontClasses)}>
+        {}
+        <Providers>
+          {children}
+          <Analytics />
+        </Providers>
+        {}
+      </body>
+    </html>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/app/loading.tsx
+import React from "react"
+import { CommonIcons } from "@/icons/commonIcons"
+
+function Loading() {
+  return (
+    <div
+      role='status'
+      className='flex h-screen flex-col items-center justify-center gap-2 px-6  py-8 text-center md:gap-3 '
+    >
+      <CommonIcons.logo className='inline size-12 animate-pulse md:size-16 ' />
+      <p className='animate-pulse pb-5 text-xl md:text-2xl'>Загрузка...</p>
+      <span className='sr-only'>Загрузка...</span>
+
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+
+      {}
+
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+      {}
+    </div>
+  )
+}
+
+export default React.memo(Loading)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/robots.ts
+
+
+import { MetadataRoute } from "next"
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: "Googlebot",
+        allow: ["/"],
+        disallow: [
+          "/dashboard/",
+          "/account/",
+          "/privacy",
+          "/login",
+          "/register",
+          "/forgot-password",
+          "/api",
+          "/*?_openstat",
+          "/*utm_source=",
+          "/*utm_medium=",
+          "/*utm_campaign=",
+        ],
+      },
+      {
+        userAgent: "Yandex",
+        allow: ["/"],
+        disallow: [
+          "/dashboard/",
+          "/account/",
+          "/privacy",
+          "/login",
+          "/register",
+          "/forgot-password",
+          "/api",
+          "/*?_openstat",
+          "/*utm_source=",
+          "/*utm_medium=",
+          "/*utm_campaign=",
+        ],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: ["/"],
+        disallow: [
+          "/dashboard/",
+          "/account/",
+          "/privacy",
+          "/login",
+          "/register",
+          "/forgot-password",
+          "/api",
+          "/*?_openstat",
+          "/*utm_source=",
+          "/*utm_medium=",
+          "/*utm_campaign=",
+        ],
+      },
+      {
+        userAgent: "YandexDirect",
+        allow: ["/"],
+      },
+      {
+        userAgent: "*",
+        allow: ["/"],
+        disallow: [
+          "/dashboard/",
+          "/account/",
+          "/privacy",
+          "/login",
+          "/register",
+          "/forgot-password",
+          "/api",
+          "/*?_openstat",
+          "/*utm_source=",
+          "/*utm_medium=",
+          "/*utm_campaign=",
+        ],
+      },
+    ],
+    host: "https:
+    sitemap: "https:
+
+    
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/sitemap.ts
+import { MetadataRoute } from "next"
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: "/",
+      lastModified: new Date(),
+    },
+    {
+      url: "/contact",
+      lastModified: new Date(),
+    },
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/(auth)/layout.tsx
+import React, { Suspense } from "react"
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle"
+import Loading from "@/app/loading"
+
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div>
+      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <ThemeToggle className='absolute bottom-4 right-4' />
+    </div>
+  )
+}
+
+export default AuthLayout
+
+
+
+
+
+
+
+
+
+
+// src/app/(auth)/login/LoginForm.tsx
+
+"use client"
+
+import React, { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { delay } from "@/utils/delay"
+import { authServerAct } from "@/utils/todoUtilsServer"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import * as z from "zod"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import Logo from "@/components/common/Logo"
+
+const loginFormSchema = z.object({
+  email: z.string().email({
+    message: "Неверный адрес электронной почты",
+  }),
+  password: z.string({ required_error: "Пароль обязателен" }).min(8, "Пароль должен состоять более чем из 8 символов"),
+})
+
+export default function LoginForm() {
+  const [, setLoading] = useState<boolean>(false)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get("register") === "success") {
+      toast("Вы авторизованы! 😇")
+    }
+  }, [searchParams, toast])
+
+  const [showPassword, setShowPassword] = useState(false)
+
+  const form = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      
+      
+      email: "",
+      password: "",
+    },
+  })
+
+  async function onSubmit(loginDetails: z.infer<typeof loginFormSchema>) {
+    setLoading(true)
+    try {
+      await authServerAct(loginDetails)
+      await delay(500)
+      toast("Вы успешно вошли в систему. 🎉")
+    } catch (err) {
+      toast("Ошибка при входе в систему. ⛔", {
+        description: "Пользователь с такой почтой не зарегистрирован или пароль введен неверно. Попробуйте ещё раз.",
+      })
+      setLoading(false)
+    }
+  }
+
+  return (
+    <main className='w-[300px] border p-4 shadow sm:w-[400px]'>
+      <div className={"flex justify-center"}>
+        <Logo />
+      </div>
+
+      <Form {...form}>
+        <form noValidate autoComplete='on' onSubmit={form.handleSubmit(onSubmit)} className='mx-auto w-full space-y-2'>
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='email'>Электронная почта</FormLabel>
+                <FormControl>
+                  <Input
+                    aria-label='email'
+                    placeholder='user@example.com'
+                    {...field}
+                    autoComplete='email'
+                    type='email'
+                    id='email'
+                    className={"focus"}
+                    autoFocus={true}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='password'>Пароль</FormLabel>
+                <FormControl>
+                  <div className='relative'>
+                    <Input
+                      aria-label='password'
+                      id='password'
+                      placeholder='••••••••'
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                      className={"focus"}
+                    />
+                    <div className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-gray-400'>
+                      {showPassword ? (
+                        <EyeOff className='h-6 w-6' onClick={() => setShowPassword(false)} />
+                      ) : (
+                        <Eye className='h-6 w-6' onClick={() => setShowPassword(true)} />
+                      )}
+                    </div>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            variant='outline'
+            type='submit'
+            className={cn("focus !mt-4 w-full select-none text-xl  hover:bg-primary/5")}
+          >
+            Вход
+          </Button>
+        </form>
+      </Form>
+    </main>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/app/(auth)/login/page.tsx
+
+
+import React from "react"
+import { Metadata } from "next"
+
+import LoginForm from "./LoginForm"
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Авторизация пользователя | Сервисный центр 777",
+  },
+}
+
+function LoginPage() {
+  return (
+    
+    <main className='flex h-screen items-center justify-center'>
+      <LoginForm />
+    </main>
+  )
+}
+
+export default LoginPage
+
+
+
+
+
+
+
+
+
+
+// src/app/(auth)/register/page.tsx
+
+
+import React from "react"
+import { Metadata } from "next"
+
+import RegisterForm from "./RegisterForm"
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Регистрация пользователя | Сервисный центр 777",
+  },
+}
+
+function RegisterPage() {
+  return (
+    <main className='flex h-screen items-center justify-center'>
+      <RegisterForm />
+    </main>
+  )
+}
+
+export default RegisterPage
+
+
+
+
+
+
+
+
+
+
+// src/app/(auth)/register/RegisterForm.tsx
+
+"use client"
+
+import React, { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { registerServerAct } from "@/utils/todoUtilsServer"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import * as z from "zod"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import Logo from "@/components/common/Logo"
+
+const RegisterFormSchema = z
+  .object({
+    name: z
+      .string()
+      .min(3, {
+        message: "Имя должно состоять не менее чем из 3 символов.",
+      })
+      .max(50, {
+        message: "Имя должно состоять не более чем из 50 символов.",
+      }),
+    email: z.string().email({
+      message: "Неверный адрес электронной почты.",
+    }),
+    password: z.string().min(7, {
+      message: "Пароль должен состоять не менее чем из 7 символов.",
+    }),
+    confirmPassword: z.string().min(7, {
+      message: "Пароль должен состоять не менее чем из 7 символов.",
+    }),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Пароли не совпадают.",
+    path: ["confirmPassword"],
+  })
+
+export default function RegisterForm() {
+  const [, setLoading] = useState<boolean>(false)
+  const searchParams = useSearchParams()
+  const [showPassword, setShowPassword] = useState(false)
+
+  const form = useForm<z.infer<typeof RegisterFormSchema>>({
+    resolver: zodResolver(RegisterFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  })
+
+  useEffect(() => {
+    const failedReason = searchParams.get("failed")
+    if (failedReason === "duplicate-email") {
+      toast("Пользователь с такой почтой уже зарегистрирован. ☹️")
+    } else if (failedReason === "error") {
+      toast("Не удалось зарегистрироваться. ☹️")
+    }
+    setLoading(false)
+  }, [searchParams, toast, form])
+
+  async function onSubmit(registerDetails: z.infer<typeof RegisterFormSchema>) {
+    setLoading(true)
+
+    try {
+      await registerServerAct(registerDetails)
+      
+      
+    } catch (err) {
+      toast("3 Не удалось зарегистрироваться. ☹️", { description: "☹️" })
+    } finally {
+      setLoading(false)
+    }
+
+    
+    
+    
+    
+    
+    
+    
+
+    setLoading(false)
+  }
+
+  return (
+    <main className='w-[300px] border p-4 shadow sm:w-[400px]'>
+      <div className={"flex justify-center"}>
+        <Logo />
+      </div>
+
+      <Form {...form}>
+        <form noValidate autoComplete='on' onSubmit={form.handleSubmit(onSubmit)} className='mx-auto w-full space-y-2'>
+          <FormField
+            control={form.control}
+            name='name'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='name'>Имя</FormLabel>
+                <FormControl>
+                  <Input
+                    aria-label='name'
+                    placeholder='Иван Иванович Иванов'
+                    {...field}
+                    autoComplete='name'
+                    type='text'
+                    id='name'
+                    autoFocus={true}
+                    className={"focus"}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='email'>Электронная почта</FormLabel>
+                <FormControl>
+                  <Input
+                    aria-label='email'
+                    placeholder='user@example.com'
+                    {...field}
+                    autoComplete='email'
+                    type='email'
+                    id='email'
+                    className={"focus"}
+                  />
+                </FormControl>
+                {}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='password'>Пароль</FormLabel>
+                <FormControl>
+                  <div className='relative'>
+                    <Input
+                      aria-label='password'
+                      id='password'
+                      placeholder='••••••••'
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                      className={"focus"}
+                    />
+                    <div className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-gray-400'>
+                      {showPassword ? (
+                        <EyeOff className='h-6 w-6' onClick={() => setShowPassword(false)} />
+                      ) : (
+                        <Eye className='h-6 w-6' onClick={() => setShowPassword(true)} />
+                      )}
+                    </div>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='confirmPassword'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor='confirmPassword'>Подтвердите пароль</FormLabel>
+                <FormControl>
+                  <div className='relative'>
+                    <Input
+                      aria-label='Подтвердите пароль'
+                      id='confirmPassword'
+                      placeholder='••••••••'
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                      className={"focus"}
+                    />
+                    <div className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-gray-400'>
+                      {}
+                      {}
+                      {}
+                      {}
+                      {}
+                    </div>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            variant='outline'
+            type='submit'
+            className={cn("focus !mt-4 w-full select-none text-xl  hover:bg-primary/5")}
+          >
+            Регистрация
+          </Button>
+        </form>
+      </Form>
+    </main>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/app/(site)/layout.tsx
+import "@/styles/globals.css"
+
+import React from "react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  
+  
+  keywords: [
+    "сервисный центр",
+    "ремонт телефонов",
+    "ремонт ноутбуков",
+    "ремонт айфонов",
+    "ремонт компьютеров",
+    "сервисный центр петрозаводск",
+  ],
+  icons: {
+    icon: "/favicon.ico",
+  },
+}
+
+const SiteLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <>
+      <header className='text-2xl'>хедер сайта</header>
+      <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>{children}</main>
+      <footer className='text-2xl'>футер сайта</footer>
+    </>
+  )
+}
+
+export default React.memo(SiteLayout)
+
+
+
+
+
+
+
+
+
+
+// src/app/(site)/page.tsx
+
+
+
+import Link from "next/link"
+import { auth } from "@/lib/auth/auth"
+
+const HomePage: React.FC = async () => {
+  const session: any = await auth()
+  const user = session?.user
+  const token = session?.accessToken
+  const email = user?.email
+  console.log(process.env.NEXT_PUBLIC_APP_URL)
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  return (
+    <>
+      <h1 className='text-2xl font-bold '>Сайт - Главная</h1>
+      <Link href={"/dashboard"}>Перейти в панель управления</Link>
+      <h2>{session?.user?.name ? `Hello ${session?.user?.name}` : "Not Authenticated"}</h2>
+      {}
+      <p>
+        <img src={session?.user?.image} alt='user image' />
+      </p>
+      <p>email: {session?.user?.email} !</p>
+      <p>role: {session?.user.role}</p>
+      <p>emailVerified: {session?.user.emailVerified}</p>
+      <p> session: {JSON.stringify(session)} </p>
+      <p> user: {JSON.stringify(user)} </p>
+      <p> token: {JSON.stringify(token)} </p>
+      <p> email: {email} </p>
+      {}
+    </>
+  )
+}
+
+export default HomePage
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/(settings)/layout.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/layout.tsx
+
+import React from "react"
+import { Metadata } from "next"
+import type { User } from "@/types/user"
+import { auth } from "@/lib/auth/auth"
+import ClientOnly from "@/components/common/ClientOnly"
+import Footer from "@/components/dashboard/Footer"
+import Header from "@/components/dashboard/Header/Header"
+import Sidebar from "@/components/dashboard/Sidebar"
+
+
+
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+  authors: [
+    {
+      name: "Super User",
+    },
+  ],
+  title: "Админ панель",
+  description: "Админ панель",
+  openGraph: {
+    title: "Админ панель",
+    description: "Админ панель",
+    url: "/dashboard",
+    siteName: "Админ панель",
+    type: "website",
+    locale: "ru_RU",
+    
+    images: [
+      {
+        url: "https:
+        width: 1920,
+        height: 1080,
+        alt: "Админ панель",
+      },
+    ],
+  },
+}
+
+
+
+
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth()
+  const user = session?.user
+  return (
+    
+    <div className='flex h-screen overflow-hidden'>
+      <ClientOnly>
+        <Sidebar />
+      </ClientOnly>
+      {}
+
+      <main className='flex flex-1 flex-col'>
+        <ClientOnly>
+          <Header user={user} />
+        </ClientOnly>
+        <div className='flex-1 container mx-0 max-w-7xl'>
+        {children}
+        </div>
+        <Footer />
+      </main>
+    </div>
+    
+  )
+}
+
+export default DashboardLayout
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/notifications/page.tsx
+import React from "react"
+import { Metadata } from "next"
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+
+export const metadata: Metadata = {
+  title: "Профиль пользователя",
+}
+
+const NotificationsPage = () => {
+  return (
+      <FramerMotionWrapper>
+        {}
+
+        <PageHeader heading='Уведомления' text='Прочитайте уведомления....' />
+
+        {}
+        {}
+      </FramerMotionWrapper>
+ 
+  )
+}
+
+export default React.memo(NotificationsPage)
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/page.tsx
+
+import React from "react"
+import { Metadata } from "next"
+import { Skeleton } from "@/ui/skeleton"
+
+
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+
+
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Админ панель 🥇 | Сервис 777",
+    
+  },
+}
+
+export default function DashboardHomePage() {
+  const shimmer = `relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent`
+
+  return (
+
+        <FramerMotionWrapper>
+          {}
+
+          <PageHeader heading='Главная' text='Привет чел! Сегодня крутой денек. Удачи!' />
+
+            dsdsd 
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+
+          {}
+          {}
+          {}
+          {}
+          {}
+
+          {}
+        </FramerMotionWrapper>
+
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/profile/page.tsx
+
+
+import React from "react"
+import { Metadata } from "next"
+import { redirect } from "next/navigation"
+import { Card, CardContent, CardHeader } from "@/ui/card"
+import { auth } from "@/lib/auth/auth"
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+import EditProfile from "@/components/dashboard/profile/EditProfile"
+
+
+
+
+export const metadata: Metadata = {
+  title: "Профиль пользователя",
+}
+
+const ProfilePage = async () => {
+  const session = await auth()
+  if (!session?.user) {
+    redirect("/login")
+    
+  }
+
+  const user = session["user"]
+  console.log(`!!!user: ${JSON.stringify(user)}`)
+
+  return (
+    <FramerMotionWrapper>
+      {}
+      {}
+      <PageHeader heading='Профиль пользователя' text='Редактирование профиля пользователя' />
+
+      <Card className='mt-6 w-full '>
+        <CardHeader>Данные пользователя:</CardHeader>
+        <CardContent>
+          <EditProfile user={user} />
+        </CardContent>
+      </Card>
+    </FramerMotionWrapper>
+  )
+}
+
+export default React.memo(ProfilePage)
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/settings/page.tsx
+import React from "react"
+import { Metadata } from "next"
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+
+
+
+
+export const metadata: Metadata = {
+  title: "Настройки",
+}
+
+const SettingsPage = () => {
+  return (
+
+      <FramerMotionWrapper>
+        {}
+        {}
+        <PageHeader heading='Настройки' text='Настройки системы....' />
+        {}
+        {}
+      </FramerMotionWrapper>
+
+  )
+}
+
+export default React.memo(SettingsPage)
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/users/new/page.tsx
+import React from "react"
+import { Metadata } from "next"
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+
+export const metadata: Metadata = {
+  title: "Добавление нового пользователя",
+}
+
+const NewUserPage = () => {
+  return (
+      <FramerMotionWrapper>
+        {}
+        {}
+        <PageHeader heading='Добавить нового пользователя' text='Добавление пользователя или администратора...' />
+
+          sdsdsd
+      </FramerMotionWrapper>
+
+  )
+}
+
+export default React.memo(NewUserPage)
+
+
+
+
+
+
+
+
+
+
+// src/app/dashboard/users/page.tsx
+import React from "react"
+import { Metadata } from "next"
+import { DashboardIcons } from "@/icons/dashboardIcons"
+import FramerMotionWrapper from "@/components/common/FramerMotionWrapper"
+import PageHeader from "@/components/dashboard/PageHeader"
+import { Empty } from "@/components/empty"
+import { CommonIcons } from "@/components/icons/commonIcons"
+
+export const metadata: Metadata = {
+  title: "Список пользователей",
+}
+
+const UsersPage = () => {
+  const users = [
+    {
+      id: 1,
+      name: "Иван Иванов",
+      email: "jI5k6@example.com",
+      role: "Администратор",
+    },
+    {
+      id: 2,
+      name: "Петр Петров",
+      email: "jI5k6@example.com",
+      role: "Пользователь",
+    },
+  ]
+
+  return (
+
+      <FramerMotionWrapper>
+        {}
+        {}
+        <PageHeader heading='Список пользователей' text='Список юзеров и админов...' />
+
+        {users.length === 0 ? (
+          <Empty label='Список пользователей пуст' />
+        ) : (
+          <div className='w-full px-[30px] py-[20px]'>
+            {users.map(user => (
+              <div key={user.id} className='flex space-x-3 '>
+                <span className={""}>{user.id}</span>
+                {}
+
+                <h2 className='text-xl font-bold'>{user.name}</h2>
+                <p className='text-gray-500'>{user.email}</p>
+                <p className='text-gray-500'>{user.role}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </FramerMotionWrapper>
+   
+  )
+}
+
+export default React.memo(UsersPage)
+
+
+
+
+
+
+
+
+
+
+// src/components/common/ClientOnly.tsx
+"use client"
+
+import React, { useEffect, useState } from "react"
+
+interface ClientOnlyProps {
+  children: React.ReactNode
+}
+
+const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return null
+  }
+
+  return <>{children}</>
+}
+
+export default ClientOnly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/common/FramerMotionWrapper.tsx
+
+"use client"
+
+import React from "react"
+import { motion } from "framer-motion"
+
+interface FramerMotionWrapperProps {
+  children: React.ReactNode
+}
+
+export default function FramerMotionWrapper({ children }: FramerMotionWrapperProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 120 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        type: "spring",
+        bounce: 500,
+        stiffness: 100,
+      }}
+      className='mt-3 flex flex-col items-center justify-center xl:mt-4'
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/common/Logo.tsx
+import React from "react"
+import Link from "next/link"
+import { CommonIcons } from "@/icons/commonIcons"
+
+const Logo = () => {
+  return (
+    <Link
+      href={"/"}
+      aria-label='Сервисный центр 777'
+      title='Сервисный центр 777'
+      className='group flex items-center space-x-3 whitespace-nowrap text-lg font-semibold outline-none'
+
+    >
+      <CommonIcons.logo
+        className='h-10 w-10 transition-all duration-300 ease-in group-hover:rotate-[360deg] group-hover:scale-125'
+        aria-label='Сервисный центр 777'
+      />
+    </Link>
+  )
+}
+
+export default Logo
+
+
+
+
+
+
+
+
+
+
+// src/components/common/UserAvatar.tsx
+import React, { Suspense } from "react"
+import { Skeleton } from "@/ui/skeleton"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import {DashboardIcons} from "@/icons/dashboardIcons";
+
+interface UserAvatarProps {
+  src: string
+  name: string
+}
+
+export const UserAvatar = ({ src, name }: UserAvatarProps) => {
+  return (
+    <Suspense fallback={<Skeleton className='!size-9' />}>
+      <Avatar className={cn("relative flex !h-9 !w-9 items-center justify-center")}>
+        {
+          (src) ? (
+                  <AvatarImage src={src} alt={name ?? ""} />
+          ) : (
+              
+              <DashboardIcons.anonymous2 className={cn("absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35px] h-[35px]")} />
+          )
+        }
+          
+          
+          {}
+      </Avatar>
+    </Suspense>
+
+    
+    
+    
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/BrandDisplay.tsx
+
+
+
+
+
+
+import React from "react"
+import Link from "next/link"
+import { CommonIcons } from "@/icons/commonIcons"
+import { cn } from "@/lib/utils"
+
+interface BrandDisplayProps {
+  state: string
+}
+
+export const BrandDisplay: React.FC<BrandDisplayProps> = ({ state }) => {
+  return (
+    <div className={cn()}>
+
+        {}
+
+      <Link
+        href={"/"}
+        aria-label='Сервисный центр 777'
+        className='outline-none group flex items-center space-x-3 whitespace-nowrap text-lg font-semibold '
+      >
+        <CommonIcons.logo className='h-12 w-12 transition-all duration-300 group-hover:rotate-[360deg]' />
+        <span
+          className={cn(
+            "text-2xl",
+            state === "icons" && "hidden ",
+            
+            state === "expanded" && "block"
+          )}
+        >
+          Сервис 777
+        </span>
+      </Link>
+    </div>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/feedback/Feedback.tsx
+
+
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { createFeedback } from "@/actions/feedback"
+import { CommonIcons } from "@/icons/commonIcons"
+import { DashboardIcons } from "@/icons/dashboardIcons"
+import { createFeedbackFormSchema, createFeedbackFormSchemaType } from "@/schemas/FeedbackFormSchema"
+import { Button } from "@/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/ui/form"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+
+export function Feedback() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
+
+  const router = useRouter()
+
+  const form = useForm<createFeedbackFormSchemaType>({
+    resolver: zodResolver(createFeedbackFormSchema),
+    defaultValues: {
+      feedbackType: "" as createFeedbackFormSchemaType["feedbackType"],
+      message: "",
+    },
+  })
+
+  async function onSubmit(data: createFeedbackFormSchemaType) {
+    try {
+      await createFeedback(data)
+      toast("Сообщение успешно отправлено")
+      console.log(data)
+      
+
+      form.reset()
+      setIsOpen(false)
+      setIsTooltipOpen(false)
+      router.refresh()
+    } catch (error) {
+      toast.error(`Произошла ошибка при отправке сообщения: ${error}`)
+      console.log(error)
+    }
+    
+    setIsOpen(false)
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Tooltip open={isTooltipOpen}>
+        <DialogTrigger asChild>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='focus relative size-9 rounded-full shadow-[0_0_0_2px_#dededf] transition-all duration-300 ease-in hover:bg-[#eaedf1] dark:shadow-[0_0_0_2px_#2c3139] dark:hover:bg-[#2c3139]'
+              aria-label='Отправить сообщение об ошибке'
+              onMouseEnter={() => setIsTooltipOpen(true)} 
+              onMouseLeave={() => setIsTooltipOpen(false)} 
+              onClick={() => setIsOpen(true)}
+              
+            >
+              <DashboardIcons.bug />
+              <span className='sr-only'>Отправить сообщение об ошибке</span>
+            </Button>
+          </TooltipTrigger>
+        </DialogTrigger>
+        <TooltipContent side='right'>Отправить сообщение об ошибке</TooltipContent>
+      </Tooltip>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Отправить сообщение</DialogTitle>
+          <DialogDescription>Отправьте сообщение об ошибке, вопрос или предложение по улучшению.</DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+            <FormField
+              control={form.control}
+              name='feedbackType'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor='feedbackType'>Тип сообщения</FormLabel>
+                  <FormControl key='feedbackType'>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger className='focus w-full'>
+                        <SelectValue placeholder='Выберите тип сообщения' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value='bug'>Баг</SelectItem>
+                          <SelectItem value='question'>Вопрос</SelectItem>
+                          <SelectItem value='suggestion'>Предложение</SelectItem>
+                          <SelectItem value='review'>Отзыв</SelectItem>
+                          <SelectItem value='other'>Другое</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='message'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor='message'>Сообщение</FormLabel>
+                  <FormControl>
+                    <Textarea id='message' rows={5} className='focus w-full' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+
+        <DialogFooter>
+          <Button
+            type='submit'
+            onClick={form.handleSubmit(onSubmit)}
+            disabled={form.formState.isSubmitting}
+            className='focus mt-4 w-full'
+          >
+            {!form.formState.isSubmitting && <span>Отправить</span>}
+            {form.formState.isSubmitting && <CommonIcons.spinner className='animate-spin' />}
+            <span className='sr-only'>Отправить</span>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Header/Header.tsx
+
+"use client"
+
+import React, { useEffect, useState } from "react"
+import Link from "next/link"
+import { CommonIcons } from "@/icons/commonIcons"
+import { useSidebarStore } from "@/stores/sidebarStore"
+import type { User } from "@/types"
+import { cn } from "@/lib/utils"
+import MobileMenu from "@/components/dashboard/Header/MobileMenu"
+import UserNav from "@/components/dashboard/Header/UserNav"
+
+function Header({ user }: { user: User }) {
+  const { state } = useSidebarStore()
+  const [isMobile, setIsMobile] = useState(false)
+  
+
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 479)
+    }
+
+    handleResize()
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
+  
+  const shouldShowLogoAndName = state === "collapsed" || isMobile
+
+  return (
+    <header className='sticky! dashboard-panels-bg top-0 z-40 flex h-14 items-center justify-between overflow-hidden border-b px-1 xs:justify-end xs:px-2 dark:border-[#0f0f0f]'>
+      {shouldShowLogoAndName && (
+        <div className='flex w-full'>
+          <nav className='flex items-center gap-2 transition-all duration-300 ease-in-out     '>
+            <div role='button' className='xs:hidden'>
+              <MobileMenu />
+            </div>
+
+            <Link
+              href={"/"}
+              aria-label='Сервисный центр 777'
+              className={cn("group flex outline-none items-center gap-2 whitespace-nowrap", isMobile && "mx-auto")}
+            >
+              <CommonIcons.logo className='size-9 transition-transform duration-300 group-hover:rotate-[360deg] xs:size-10' />
+              <span className='whitespace-nowrap text-xl font-semibold tracking-tight xs:text-2xl'>
+                Сервисный центр 777
+              </span>
+            </Link>
+          </nav>
+        </div>
+      )}
+      <div className={"flex items-center gap-2 xs:gap-3"}>
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        <UserNav user={user} />
+      </div>
+    </header>
+  )
+}
+
+export default React.memo(Header)
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Header/MobileMenu.tsx
+
+"use client"
+
+import React, { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { CommonIcons } from "@/icons/commonIcons"
+import { Button } from "@/ui/button"
+import { Separator } from "@/ui/separator"
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/ui/sheet"
+import { Menu, X } from "lucide-react"
+import { dashboardRoutes as routes } from "@/config/dashboardRoutes"
+import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle"
+
+const MobileMenu: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const currentRoute = usePathname()
+
+  const activeLinkClassName =
+    "font-bold text-foreground bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 py-3 px-2.5 rounded-md"
+
+  const noActiveLinkClassName = "text-black dark:text-white"
+
+  const iconStyle = {
+    width: "23px",
+    height: "23px",
+    transition: "transform 0.3s ease-in-out, color 0.3s ease-in-out",
+  }
+
+  const iconActiveStyle = {
+    transform: "scale(1.4)",
+    color: "",
+  }
+
+  const handleCloseMenu = () => {
+    setIsOpen(false)
+  }
+
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button
+          size='icon'
+          variant='ghost'
+          className={cn(
+            "focus-button relative size-9  shadow-[0_0_0_1px_#dededf] hover:bg-[#eaedf1] sm:hidden dark:shadow-[0_0_0_1px_#2c3139] dark:hover:bg-[#2c3139]"
+          )}
+          onClick={() => setIsOpen(true)}
+        >
+          {}
+          <Menu />
+        </Button>
+      </SheetTrigger>
+
+      <SheetContent side='left' className='flex w-full flex-col  opacity-75'>
+        <Link href={"/"} aria-label='Сервисный центр 777' className={cn("absolute left-3.5 top-3.5")}>
+          <CommonIcons.logo className='size-12' />
+        </Link>
+        <SheetClose asChild>
+          <Button
+            size='icon'
+            variant='ghost'
+            className={
+              "absolute right-3.5 top-3.5 z-50 size-9  cursor-pointer rounded-full bg-slate-200  fill-white transition-all duration-300 hover:rotate-180 hover:bg-slate-300 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+            }
+          >
+            <X width={24} height={24} />
+          </Button>
+        </SheetClose>
+
+        {}
+        <Separator className='mx-auto mb-2 mt-14 w-[calc(100%-5rem)]' />
+        {
+          <>
+            {routes.map(route => (
+              <Link
+                key={route.href}
+                href={route.href}
+                aria-label={route.label}
+                onClick={handleCloseMenu}
+                className={`flex items-center gap-4 text-xl ${
+                  currentRoute === route.href ? activeLinkClassName : noActiveLinkClassName
+                }`}
+              >
+                {React.cloneElement(route.icon, {
+                  style: currentRoute === route.href ? { ...iconStyle, ...iconActiveStyle } : iconStyle,
+                })}
+                {route.label}
+              </Link>
+            ))}
+          </>
+        }
+        <div className={"flex grow flex-col items-center justify-end"}>
+          <section role={"user control"} className='flex h-20 items-center justify-center gap-3 p-4'>
+            <span>Изменить тему:</span>
+            <ThemeToggle />
+          </section>
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
+
+export default React.memo(MobileMenu)
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Header/UserNav.tsx
+
+
+"use client"
+
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { DashboardIcons } from "@/icons/dashboardIcons"
+import { Button } from "@/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/ui/dropdown-menu"
+import { signOutServerAct } from "@/utils/todoUtilsServer"
+import { User } from "next-auth"
+import { cn } from "@/lib/utils"
+import { UserAvatar } from "@/components/common/UserAvatar"
+import { Feedback } from "@/components/dashboard/feedback/Feedback"
+import { DropdownNotification } from "@/components/dashboard/Header/DropdownNotification"
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle"
+
+const UserNav = ({ user }: { user: User }) => {
+  const [screenWidth, setScreenWidth] = useState<number | null>(null)
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const isScreenSmall = screenWidth && screenWidth < 480
+
+  if (user) {
+    return (
+      <>
+        {}
+        {!isScreenSmall && (
+          <>
+            <DropdownNotification />
+            <Feedback />
+            <ThemeToggle />
+          </>
+        )}
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className={cn(
+                "focus relative !m-0 !size-9  rounded-full p-0 shadow-[0_0_0_2px_#dededf] transition-all duration-300    ease-in hover:bg-[#eaedf1]  dark:shadow-[0_0_0_2px_#2c3139] dark:hover:bg-[#2c3139] "
+              )}
+            >
+              {}
+
+              <UserAvatar src={user?.image ?? ""} name={user?.name ?? ""} />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='w-56' align='end' forceMount>
+            <DropdownMenuLabel className='font-normal'>
+              <div className='flex flex-col space-y-1'>
+                <p className='text-sm font-medium leading-none'>{user?.name}</p>
+                <p className='text-xs leading-none text-muted-foreground'>{user?.email}</p>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href={"/dashboard/profile"} className={"w-full cursor-pointer"}>
+                  Профиль
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={"/dashboard/settings"} className={"w-full cursor-pointer"}>
+                  Настройки
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className=' flex cursor-pointer justify-between ' onClick={() => signOutServerAct()}>
+              Выход
+              <DashboardIcons.logout className='size-5' />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </>
+    )
+  }
+  return null
+}
+
+export default UserNav
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/LoginForm.tsx
+
+"use client"
+
+
+import React, { Suspense, useState } from "react"
+import Link from "next/link"
+import { CommonIcons } from "@/icons/commonIcons"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
+import { signIn } from "next-auth/react"
+import { useTheme } from "next-themes"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import * as z from "zod"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import Logo from "@/components/common/Logo"
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle"
+
+const loginSchema = z.object({
+  email: z
+    .string({ required_error: "Почта обязательна" })
+    .email("Неверный адрес электронной почты")
+    .min(4, "Неверный адрес электронной почты"),
+  password: z.string({ required_error: "Пароль обязателен" }).min(8, "Пароль должен состоять более чем из 8 символов"),
+})
+
+type FormData = z.infer<typeof loginSchema>
+
+export default function LoginForm() {
+  const form = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "pavelbe635545@yandex.ru",
+      password: "q123456789",
+    },
+  })
+  const [showPassword, setShowPassword] = useState(false)
+  const [submitting, setSubmitting] = useState<boolean>(false)
+  
+
+  const { theme, setTheme } = useTheme()
+
+  async function onSubmit(data: z.infer<typeof loginSchema>) {
+    
+    const { email, password } = data
+    console.log("!!!", email, password)
+
+    try {
+      setSubmitting(true)
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      })
+    } catch (error) {
+      console.log(error)
+      toast.error("Неверный адрес электронной почты или пароль")
+      
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    console.log(data)
+
+    
+  }
+
+  return (
+    <Suspense>
+      <div className='w-[300px] border p-4 shadow sm:w-[400px]'>
+        <div className={"flex justify-center"}>
+          <Logo />
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+          {}
+        </div>
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='mx-auto w-full  space-y-2'>
+            <FormField
+              control={form.control}
+              name='email'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Email' {...field} />
+                  </FormControl>
+                  {}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Пароль</FormLabel>
+                  <FormControl>
+                    <div className='relative'>
+                      <Input
+                        placeholder='Password'
+                        type={showPassword ? "text" : "password"}
+                        {...field}
+                        className={"pr-10"}
+                      />
+                      <div className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-gray-400'>
+                        {showPassword ? (
+                          <EyeOff className='h-6 w-6' onClick={() => setShowPassword(false)} />
+                        ) : (
+                          <Eye className='h-6 w-6' onClick={() => setShowPassword(true)} />
+                        )}
+                      </div>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button
+              variant='outline'
+              type='submit'
+              className={cn("!mt-4 w-full select-none text-xl  hover:bg-primary/5")}
+            >
+              Вход
+            </Button>
+          </form>
+        </Form>
+
+        <ThemeToggle className='absolute bottom-4 right-4' />
+
+        {}
+        {}
+        {}
+        {}
+        {}
+      </div>
+    </Suspense>
+  )
+
+  
+
+  
+  
+  
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Footer.tsx
+
+
+import React, { memo } from "react"
+import { siteConfig } from "@/config"
+
+const Footer = () => {
+  const year = new Date().getFullYear()
+  return (
+    <footer className=' dashboard-panels-bg flex flex-col items-center justify-center space-y-0.5 border-t p-2 dark:border-[#0f0f0f]'>
+      {}
+
+      <span className={"text-sm"}>
+        © 2000-{year}{" "}
+        <a href='/' target='_blank' rel='noopener noreferrer'>
+          {siteConfig.name}
+        </a>
+      </span>
+
+      <span className={"text-sm font-light text-gray-500 dark:text-gray-400"}>Сделано с ❤️ и ☕</span>
+    </footer>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+  )
+}
+
+export default memo(Footer)
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Header/DropdownNotification.tsx
+import { DashboardIcons } from "@/icons/dashboardIcons"
+import { Button } from "@/ui/button"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip"
+import { cn } from "@/lib/utils"
+
+export function DropdownNotification({ className }: { className?: string }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant='ghost'
+          size='icon'
+          aria-label='Уведомления'
+          className={cn(
+            "focus relative size-9 rounded-full shadow-[0_0_0_2px_#dededf] transition-all duration-300    ease-in hover:bg-[#eaedf1]  dark:shadow-[0_0_0_2px_#2c3139] dark:hover:bg-[#2c3139]",
+            className
+          )}
+        >
+          <DashboardIcons.notifications className='' />
+          <span className='sr-only'>Уведомления</span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side='right'>Уведомления</TooltipContent>
+    </Tooltip>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/PageHeader.tsx
+import React from "react"
+
+type Props = {
+  heading: React.ReactNode
+  text?: React.ReactNode
+  children?: React.ReactNode
+}
+
+const PageHeader = ({ heading, text, children }: Props) => {
+  return (
+    <div aria-label='header' className='flex w-full items-center justify-between'>
+      <div className='grid gap-2'>
+        <h1 className='text-2xl font-bold sm:text-3xl md:text-4xl'>{heading}</h1>
+        {text && <p className='text-lg text-muted-foreground sm:text-xl md:text-2xl'>{text}</p>}
+      </div>
+      {children}
+    </div>
+  )
+
+  {
+    
+  }
+  {
+    
+  }
+  {
+    
+  }
+
+  
+  
+  {
+    
+  }
+  {
+    
+  }
+  {
+    
+  }
+  {
+    
+  }
+  {
+    
+  }
+  
+  
+  
+  
+}
+
+export default PageHeader
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/profile/EditProfile.tsx
+
+
+"use client"
+import { useRouter } from "next/navigation";
+import {FC, useState} from "react";
+import { type Session } from "next-auth";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import {profileFormSchema, profileFormSchemaType} from "@/schemas/ProfileFormSchema"
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/ui/form";
+import {Input} from "@/ui/input";
+import {Button} from "@/ui/button";
+import {updateProfile} from "@/actions/profile";
+import { CommonIcons } from "@/components/icons/commonIcons";
+
+
+interface EditProfileProps {
+    user: Session["user"];
+    onEditModeExit: () => void;
+}
+
+const EditProfile: FC<EditProfileProps> = ({user}) => {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    
+
+
+    const form = useForm<profileFormSchemaType>({
+        resolver: zodResolver(profileFormSchema),
+        defaultValues: {
+            name: user.name as profileFormSchemaType["name"],
+            image: user.image as profileFormSchemaType["image"],
+        },
+    })
+
+
+    async function onSubmit(data: profileFormSchemaType) {
+        setLoading(true);
+
+        try{
+            console.log(`хм`)
+            await updateProfile(data)
+            toast.success("Профиль обновлен")
+            router.refresh();
+
+        }
+        catch(error) {
+            toast.error(`Произошла ошибка при отправке: ${error}`)
+            console.log(error)
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
+    console.log(user.email)
+
+    return (
+        <div className='flex flex-col space-y-4 '>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2 flex-1'>
+        <FormItem>
+            <FormLabel htmlFor='email'>Email  <span className=" text-slate-500 text-xs">Не меняется. Просите 😇</span></FormLabel>
+
+            <Input className="" disabled value={user.email as string}  />
+
+                        </FormItem>
+
+
+
+
+
+                <FormField
+                    control={form.control}
+                    name='name'
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel htmlFor='name'>Имя</FormLabel>
+                            <FormControl key='name'>
+                                <Input className="focus"
+                                    disabled={loading}
+                                    placeholder="johndoe@gmail.com"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name='image'
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel htmlFor='image'>Аватарка</FormLabel>
+                            <FormControl key='image'>
+                                <Input className="focus"
+                                    disabled={loading}
+                                       placeholder="Ссылка на изображение"
+                                    {...field}
+                                       value={field.value || ''} 
+
+                                />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+            </form>
+        </Form>
+            <div className={"flex justify-center"}>
+            <Button type='submit' className={"focus w-full sm:max-w-xs py-2 px-4 space-x-2 whitespace-nowrap"} onClick={form.handleSubmit(onSubmit) }  disabled={form.formState.isSubmitting}>
+                {
+                    loading ? (
+                        <>
+                        <span className={"space-x-2 whitespace-nowrap"}>
+                       Отправляю...
+                        </span>
+                        <CommonIcons.spinner className='animate-spin h-6 w-6' />
+                        </>
+                    ) : "Сохранить"
+                }
+
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+export default EditProfile
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/Sidebar.tsx
+
+"use client"
+
+import React, { useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useSidebarStore } from "@/stores/sidebarStore"
+import { Button } from "@/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { dashboardRoutes as routes } from "@/config/dashboardRoutes"
+import { cn } from "@/lib/utils"
+import { BrandDisplay } from "@/components/dashboard/BrandDisplay"
+
+function Sidebar() {
+  const { state, setState } = useSidebarStore()
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)")
+    
+
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        
+        if (state === "expanded") {
+          setState("icons")
+        }
+      } else {
+        
+        if (state === "collapsed") {
+          setState("expanded")
+        }
+      }
+    }
+
+    mediaQuery.addEventListener("change", handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange)
+    }
+  }, [state])
+
+  const toggleSidebar = React.useCallback(() => {
+    if (window.innerWidth <= 768) {
+      
+      
+      setState(state === "icons" ? "collapsed" : "icons")
+    } else {
+      
+      switch (state) {
+        case "expanded": {
+          setState("icons")
+          break
+        }
+        case "icons": {
+          setState("collapsed")
+          break
+        }
+        case "collapsed": {
+          setState("expanded")
+          break
+        }
+      }
+    }
+  }, [state, setState])
+
+  const defaultActiveMenuItemStyle = cn(
+    "dark:bg-[#27272a] dark:hover:bg-[#27272a] dark:border-[#ffffff] border-brandGreenColor"
+  )
+  const defaultMenuItemsStyle = cn("dark:bg-[#18181b] dark:hover:bg-[#27272a]")
+
+  const iconActiveClasses = "h-6 w-6 !scale-[1.2]  dark:text-white !transition-transform duration-300 ease-in-out"
+  const iconInactiveClasses = "h-6 w-6 dark:text-gray-400 transition-transform duration-300 ease-in-out"
+
+  const SidebarSectionWithIconAndText = () => {
+    const currentRoute = usePathname()
+
+    const activeLinkClassName = cn(
+      "group flex items-center   gap-2.5 border-l-4   bg-[#E5E7EB] py-3 px-2.5 text-black  hover:bg-[#D1D5DB] hover:text-slate-700   dark:text-white  dark:hover:text-slate-300 transition-all duration-700 ease-in-out",
+      defaultActiveMenuItemStyle
+    )
+
+    const noActiveLinkClassName = cn(
+      "group flex items-center gap-2.5 border-l-4 border-transparent py-3 px-2.5 text-black hover:text-slate-700 dark:text-white dark:hover:text-slate-300 ",
+      defaultMenuItemsStyle
+    )
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    return (
+      <>
+        {routes.map(route => (
+          <Link
+            key={route.href}
+            href={route.href}
+            className={`flex gap-4  ${currentRoute === route.href ? activeLinkClassName : noActiveLinkClassName}`}
+          >
+            {React.cloneElement(route.icon, {
+              className: currentRoute === route.href ? iconActiveClasses : iconInactiveClasses,
+            })}
+            {route.label}
+          </Link>
+        ))}
+      </>
+    )
+  }
+
+  const SidebarSectionWithIconOnly = () => {
+    const currentRoute = usePathname()
+
+    const activeLinkClassName = cn(
+      "group flex items-center   border-l-[4px]  bg-[#E5E7EB] py-3 px-2.5 text-black  hover:bg-[#D1D5DB] hover:text-slate-700  dark:border-slate-700  dark:text-white dark:hover:text-slate-300 transition-all duration-700 ease-in-out",
+      defaultActiveMenuItemStyle
+    )
+
+    const noActiveLinkClassName = cn(
+      "group flex items-center   border-l-[4px] border-transparent py-3 px-2.5 text-black hover:text-slate-700 dark:text-white dark:hover:text-slate-300",
+      defaultMenuItemsStyle
+    )
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    return (
+      <>
+        {routes.map(route => (
+          <TooltipProvider key={route.label}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  key={route.label}
+                  href={route.href}
+                  className={` flex justify-center  ${
+                    currentRoute === route.href ? activeLinkClassName : noActiveLinkClassName
+                  }`}
+                >
+                  {React.cloneElement(route.icon, {
+                    className: currentRoute === route.href ? iconActiveClasses : iconInactiveClasses,
+                  })}
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side='right'>{route.label}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ))}
+      </>
+    )
+  }
+
+  const sidebarClass = cn({
+    "hidden sm:block": true,
+    "w-[15rem]": state === "expanded",
+    "w-[4.8rem]": state === "icons",
+    "w-0 opacity-0 !ease-in": state === "collapsed",
+    "transition-all duration-300 ease-in-out": true,
+  })
+
+  const getIcon = () => {
+    console.log(state)
+    switch (state) {
+      case "expanded": {
+        return (
+          <ChevronLeft className=' absolute -left-[0.38rem]  top-1/2 -translate-y-1/2  text-white transition-all duration-300' />
+        )
+      }
+      case "icons": {
+        return (
+          <ChevronLeft className=' absolute -left-[0.38rem] top-1/2 -translate-y-1/2 text-white transition-all duration-300 ' />
+        )
+      }
+      case "collapsed": {
+        return (
+          <ChevronRight className=' absolute -left-[0.31rem] top-1/2 -translate-y-1/2 text-white transition-all duration-300 dark:-left-[0.28rem] ' />
+        )
+      }
+      default: {
+        return null
+      }
+    }
+  }
+
+  const handleToggleSidebar = () => {
+    toggleSidebar()
+  }
+
+  const sidebarToggleButton = (
+    <Button
+      size='icon'
+      className={cn(
+        "top-[calc(50%-15px)]! dark:bg-[#18181b]! dark:hover:bg-[#27272a]! group absolute top-1/2 z-50 m-0 hidden h-[45px]  w-[13px] rounded-none  rounded-r-sm p-0 shadow transition-all   duration-300 ease-in-out xs:block dark:bg-[#18181b] dark:hover:bg-[#27272a]",
+        {
+          "left-[14.95rem] bg-green-300 hover:bg-green-500 ": state === "expanded",
+          "left-[4.78rem] bg-blue-300 hover:bg-blue-500": state === "icons",
+          "-left-[0.05rem] hidden bg-red-300 duration-300 ease-in hover:bg-red-500 xs:inline-block":
+            state === "collapsed",
+        }
+      )}
+      variant='ghost'
+      onClick={handleToggleSidebar}
+    >
+      {getIcon()}
+    </Button>
+  )
+
+  return (
+    <>
+      {sidebarToggleButton}
+      <aside
+        className={` hidden shadow-lg  xs:flex xs:flex-col dark:shadow-[0_0_0_1px_#0f0f0f]  ${sidebarClass} dashboard-panels-bg`}
+      >
+        <BrandDisplay state={state} />
+
+        {}
+        <section
+          role='navigation'
+          className='mt-12 min-h-[calc(100vh-10rem)] space-y-1.5 overflow-x-hidden whitespace-nowrap text-[15px] tracking-tight'
+        >
+          {state === "expanded" && <SidebarSectionWithIconAndText />}
+
+          {}
+          {state === "icons" && <SidebarSectionWithIconOnly />}
+          {}
+        </section>
+        <section
+          role={"user control"}
+          className={`mx-auto flex items-center justify-center text-center transition-all duration-300  ${
+            state === "collapsed" ? "hidden" : ""
+          }`}
+        >
+          {}
+          {}
+        </section>
+      </aside>
+    </>
+  )
+}
+
+export default React.memo(Sidebar)
+
+
+
+
+
+
+
+
+
+
+// src/components/dashboard/ThemeToggle.tsx
+"use client"
+
+import * as React from "react"
+import { CommonIcons } from "@/icons/commonIcons"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip"
+
+import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+
+export function ThemeToggle({ className }: { className?: string }) {
+  const { setTheme, theme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light")
+  }
+
+  return (
+    
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant='ghost'
+          size='icon'
+          aria-label='Поменять тему'
+          className={cn(
+            "focus relative size-9 rounded-full shadow-[0_0_0_2px_#dededf] transition-all duration-300    ease-in hover:bg-[#eaedf1]  dark:shadow-[0_0_0_2px_#2c3139] dark:hover:bg-[#2c3139] ",
+            className
+          )}
+          onClick={toggleTheme}
+        >
+          <CommonIcons.sun
+            className={cn(
+              "absolute !size-[31px] rotate-0 scale-100  !transition-all !duration-300 ease-in dark:-rotate-90 dark:scale-0"
+            )}
+          />
+          <CommonIcons.moon
+            className={cn(
+              "absolute !size-[27px] rotate-90 scale-0 !transition-all  !duration-300 ease-in dark:rotate-0 dark:scale-100"
+            )}
+          />
+          <span className='sr-only'>Поменять тему</span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side='right'>Поменять тему</TooltipContent>
+    </Tooltip>
+    
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/dev/TailwindIndicator.tsx
+"use client"
+
+import React, { useEffect, useState } from "react"
+
+function TailwindIndicatorComponent() {
+  const [screenWidth, setScreenWidth] = useState<number | null>(null)
+  
+
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return (
+    <div className='borderless fixed bottom-1 left-1 z-[999] flex h-8  items-center justify-center rounded-xl  bg-gray-800 p-3 font-mono text-sm text-white'>
+      <div className='xs:hidden'>xxs / {screenWidth}</div>
+      <div className='hidden xs:block sm:hidden'>xs / {screenWidth}</div>
+      <div className='hidden sm:block md:hidden'>sm / {screenWidth}</div>
+      <div className='hidden md:block lg:hidden'>md / {screenWidth}</div>
+      <div className='hidden lg:block xl:hidden'>lg / {screenWidth}</div>
+      <div className='hidden xl:block 2xl:hidden'>xl / {screenWidth}</div>
+      <div className='hidden 2xl:block 3xl:hidden'>2xl / {screenWidth}</div>
+      <div className='4xl:hidden hidden  3xl:block '>3xl / {screenWidth}</div>
+    </div>
+  )
+}
+
+export function TailwindIndicator() {
+  if (process.env.NODE_ENV === "production") {
+    return null
+  }
+
+  return <TailwindIndicatorComponent />
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/icons/commonIcons.tsx
+import React from "react"
+import { LucideProps, type LucideIcon } from "lucide-react"
+
+export type Icon = LucideIcon
+
+export const CommonIcons = {
+  
+  
+
+  spinner: (props: LucideProps) => (
+    
+    <svg
+      xmlns='http:
+      fill='currentColor'
+      stroke='currentColor'
+      strokeWidth='0'
+      viewBox='0 0 16 16'
+      data-slot='icon'
+      className='h-6 w-6'
+      {...props}
+    >
+      <path
+        stroke='none'
+        d='M16 8a7.917 7.917 0 00-2.431-5.568A7.776 7.776 0 005.057.896c-.923.405-1.758.992-2.449 1.712S1.371 4.182 1.011 5.105a7.531 7.531 0 00.115 5.742c.392.892.961 1.7 1.658 2.368S4.307 14.41 5.2 14.758a7.286 7.286 0 002.799.493 7.157 7.157 0 006.526-4.547 6.98 6.98 0 00.415-1.622l.059.002a1 1 0 00.996-1.083h.004zm-1.589 2.655c-.367.831-.898 1.584-1.55 2.206s-1.422 1.112-2.254 1.434a6.759 6.759 0 01-2.608.454 6.676 6.676 0 01-4.685-2.065 6.597 6.597 0 01-1.38-2.173 6.514 6.514 0 01.116-4.976c.342-.77.836-1.468 1.441-2.044s1.321-1.029 2.092-1.326c.771-.298 1.596-.438 2.416-.416s1.629.202 2.368.532c.74.329 1.41.805 1.963 1.387s.988 1.27 1.272 2.011a6.02 6.02 0 01.397 2.32h.004a1 1 0 00.888 1.077 6.872 6.872 0 01-.481 1.578z'
+      ></path>
+    </svg>
+  ),
+
+  sun: (props: LucideProps) => (
+    <svg
+      xmlns='http:
+      fill='none'
+      viewBox='0 0 24 24'
+      strokeWidth='1.5'
+      stroke='currentColor'
+      data-slot='icon'
+      className='h-6 w-6'
+      {...props}
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        d='M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z'
+      />
+    </svg>
+  ),
+  moon: (props: LucideProps) => (
+    <svg
+      xmlns='http:
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='h-6 w-6'
+      {...props}
+    >
+      <path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z' />
+    </svg>
+  ),
+
+  logo: (props: LucideProps) => (
+    <svg xmlns='http:
+      <g>
+        <polygon
+          style={{ fill: "currentColor" }}
+          points='4.53 44.82 8.8 47.71 26.31 18.15 4.14 18.15 4.14 22.91 17.51 22.91 4.53 44.82'
+        />
+        <polygon
+          style={{ fill: "currentColor" }}
+          points='16.37 38.57 20.64 41.46 38.15 11.9 15.98 11.9 15.98 16.66 29.35 16.66 16.37 38.57'
+        />
+        <polygon
+          style={{ fill: "currentColor" }}
+          points='28.22 32.31 32.49 35.2 50 5.64 27.83 5.64 27.83 10.41 41.2 10.41 28.22 32.31'
+        />
+
+        <g>
+          <path
+            style={{ fill: "#00db84" }}
+            d='m46.51,14.66c1.27,2.91,1.95,6.09,1.95,9.36,0,6.56-2.7,12.51-7.06,16.81-4.36,4.3-10.39,6.96-17.05,6.96-4.32,0-8.38-1.12-11.88-3.09l1.23-2.11c3.14,1.76,6.78,2.76,10.65,2.76,5.98,0,11.39-2.39,15.3-6.25,3.92-3.86,6.34-9.2,6.34-15.09,0-2.3-.37-4.55-1.08-6.67l1.6-2.69h0Zm-12.45-9.72l1.25-2.1c-1.57-.79-3.23-1.41-4.95-1.84-1.97-.5-3.99-.76-6.01-.76C17.7.25,11.67,2.91,7.31,7.21,2.95,11.51.25,17.46.25,24.02c0,5.88,2.16,11.26,5.75,15.41l1.32-2.25c-2.88-3.63-4.6-8.19-4.6-13.16,0-5.89,2.42-11.23,6.34-15.09,3.92-3.86,9.33-6.25,15.3-6.25,1.84,0,3.66.23,5.41.67,1.48.38,2.92.91,4.31,1.6Z'
+          />
+          <path
+            style={{ fill: "#00db84" }}
+            d='m24.35,48.04c-4.21,0-8.36-1.08-12.01-3.12l-.22-.12,1.49-2.53.21.12c3.19,1.78,6.84,2.73,10.53,2.73,5.72,0,11.09-2.19,15.13-6.18,4.04-3.98,6.26-9.28,6.26-14.91,0-2.25-.36-4.46-1.07-6.59l-.04-.11,1.91-3.21.19.45c1.31,3.01,1.97,6.19,1.97,9.46,0,6.42-2.53,12.45-7.13,16.99-4.6,4.54-10.71,7.03-17.22,7.03Zm-11.54-3.43c3.51,1.92,7.5,2.93,11.54,2.93,6.37,0,12.36-2.45,16.87-6.89,4.51-4.44,6.99-10.35,6.99-16.63,0-3.04-.58-6-1.74-8.81l-1.29,2.17c.7,2.14,1.06,4.38,1.06,6.64,0,5.77-2.28,11.19-6.41,15.27-4.13,4.08-9.63,6.32-15.48,6.32-3.7,0-7.34-.92-10.56-2.67l-.98,1.68Zm-6.78-4.76l-.23-.26C2.06,35.26,0,29.73,0,24.02c0-6.42,2.53-12.45,7.13-16.99C11.73,2.5,17.85,0,24.35,0c2.03,0,4.08.26,6.07.76,1.73.44,3.42,1.07,5,1.86l.24.12-1.5,2.53-.21-.1c-1.36-.68-2.8-1.21-4.26-1.58-1.73-.44-3.53-.66-5.34-.66-5.71,0-11.09,2.19-15.13,6.18-4.04,3.98-6.26,9.28-6.26,14.91,0,4.77,1.57,9.26,4.55,13l.11.13-1.58,2.7ZM24.35.5C17.98.5,11.99,2.94,7.48,7.39,2.98,11.83.5,17.74.5,24.02c0,5.47,1.94,10.78,5.46,14.98l1.06-1.8c-2.98-3.8-4.55-8.36-4.55-13.18,0-5.77,2.28-11.19,6.41-15.27,4.13-4.08,9.63-6.32,15.48-6.32,1.85,0,3.69.23,5.47.68,1.42.36,2.82.87,4.15,1.51l.99-1.67c-1.48-.72-3.04-1.3-4.66-1.71-1.96-.5-3.96-.75-5.95-.75Z'
+          />
+        </g>
+      </g>
+    </svg>
+  ),
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/icons/dashboardIcons.tsx
+import React from "react"
+import {
+  BellRing,
+  CircleUserRound,
+  Home,
+  LogOut,
+  LucideProps,
+  Settings,
+  UserRoundPlus,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react"
+
+export type Icon = LucideIcon
+
+export const DashboardIcons = {
+  home: Home,
+
+  users: UsersRound,
+
+  userPlus: UserRoundPlus,
+
+  profile: CircleUserRound,
+
+  notifications: BellRing,
+
+  settings: Settings,
+
+  logout: LogOut,
+
+  anonymous : (props: LucideProps) => (
+      <svg
+          xmlns="http:
+          width="200"
+          height="200"
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="0"
+          viewBox="0 0 448 512"
+          {...props}
+      >
+        <path
+            stroke="none"
+            d="M383.9 308.3l23.9-62.6c4-10.5-3.7-21.7-15-21.7h-58.5c11-18.9 17.8-40.6 17.8-64v-.3c39.2-7.8 64-19.1 64-31.7 0-13.3-27.3-25.1-70.1-33-9.2-32.8-27-65.8-40.6-82.8-9.5-11.9-25.9-15.6-39.5-8.8l-27.6 13.8c-9 4.5-19.6 4.5-28.6 0L182.1 3.4c-13.6-6.8-30-3.1-39.5 8.8-13.5 17-31.4 50-40.6 82.8-42.7 7.9-70 19.7-70 33 0 12.6 24.8 23.9 64 31.7v.3c0 23.4 6.8 45.1 17.8 64H56.3c-11.5 0-19.2 11.7-14.7 22.3l25.8 60.2C27.3 329.8 0 372.7 0 422.4v44.8C0 491.9 20.1 512 44.8 512h358.4c24.7 0 44.8-20.1 44.8-44.8v-44.8c0-48.4-25.8-90.4-64.1-114.1zM176 480l-41.6-192 49.6 32 24 40-32 120zm96 0l-32-120 24-40 49.6-32L272 480zm41.7-298.5c-3.9 11.9-7 24.6-16.5 33.4-10.1 9.3-48 22.4-64-25-2.8-8.4-15.4-8.4-18.3 0-17 50.2-56 32.4-64 25-9.5-8.8-12.7-21.5-16.5-33.4-.8-2.5-6.3-5.7-6.3-5.8v-10.8c28.3 3.6 61 5.8 96 5.8s67.7-2.1 96-5.8v10.8c-.1.1-5.6 3.2-6.4 5.8z"
+        ></path>
+      </svg>
+  ),
+anonymous2 : (props: LucideProps) => (
+    <svg
+        xmlns="http:
+        width="200"
+        height="200"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0"
+        viewBox="0 0 32 32"
+        {...props}
+    >
+      <path
+          stroke="none"
+          d="M13.063 4c-.876 0-1.645.45-2.188 1.031-.543.582-.934 1.309-1.281 2.094-.531 1.21-.91 2.555-1.25 3.813-1.086.316-2.008.71-2.75 1.187C4.727 12.684 4 13.457 4 14.5c0 .906.555 1.633 1.25 2.156.594.446 1.324.817 2.188 1.125.05.23.125.465.218.688-.843.476-2.18 1.398-3.468 3.156l-.594.844.844.593 3.28 2.25L6.376 28h19.25l-1.344-2.688 3.282-2.25.843-.593-.593-.844c-1.29-1.758-2.625-2.68-3.47-3.156.095-.223.169-.457.22-.688.863-.308 1.593-.68 2.187-1.125.695-.523 1.25-1.25 1.25-2.156 0-1.043-.727-1.816-1.594-2.375-.742-.477-1.664-.871-2.75-1.188-.375-1.304-.789-2.671-1.312-3.874-.34-.778-.715-1.493-1.25-2.063-.535-.57-1.297-1-2.157-1-.582 0-1.023.16-1.5.281-.476.121-.957.219-1.437.219-.96 0-1.766-.5-2.938-.5zm0 2c.207 0 1.437.5 2.937.5.75 0 1.418-.152 1.938-.281.519-.13.914-.219 1-.219.23 0 .402.074.687.375.285.3.621.844.906 1.5.543 1.242.957 2.938 1.407 4.5 0-.004.054-.047-.094.031-.25.137-.774.313-1.407.406-1.269.192-3 .188-4.437.188-1.43 0-3.164-.02-4.438-.219-.636-.097-1.152-.27-1.406-.406-.078-.043-.105-.027-.125-.031v-.031c.004-.008-.004-.024 0-.032l.031-.031a1.01 1.01 0 00.126-.438v-.03c.359-1.329.761-2.735 1.25-3.845.292-.667.609-1.21.906-1.53.297-.321.5-.407.719-.407zm-4.876 7.094c.227.469.626.844 1.032 1.062.61.324 1.308.477 2.062.594 1.508.234 3.274.25 4.719.25 1.438 0 3.207.008 4.719-.219.758-.113 1.449-.261 2.062-.594.41-.222.809-.617 1.032-1.093.617.219 1.136.453 1.5.687.582.375.687.653.687.719 0 .059-.05.25-.469.563-.418.312-1.136.675-2.062.968-1.852.59-4.516.969-7.469.969-2.953 0-5.617-.379-7.469-.969-.926-.293-1.644-.656-2.062-.968C6.05 14.75 6 14.559 6 14.5c0-.066.078-.316.656-.688.364-.234.899-.488 1.532-.718zm2.594 5.469c.328.054.653.144 1 .187.13.879.813 1.652 1.906 1.719.844.05 1.793-.348 1.876-1.469h.875c.082 1.121 1.03 1.52 1.875 1.469 1.093-.067 1.777-.84 1.906-1.719.347-.043.672-.133 1-.188l-.094.625c-.309 1.645-1.043 3.168-1.969 4.22C18.23 24.456 17.145 25.015 16 25c-1.176-.016-2.238-.582-3.156-1.625-.918-1.043-1.64-2.535-1.969-4.188zM23 20c.371.219 1.348.86 2.469 2.094l-3.032 2.093-.718.47.375.78.281.563h-3.156a7.547 7.547 0 001.437-1.281c1.102-1.25 1.84-2.887 2.25-4.657.035-.019.063-.042.094-.062zm-14.031.031c.039.024.086.04.125.063.43 1.746 1.164 3.363 2.25 4.593.449.512.972.95 1.531 1.313h-3.25l.281-.563.375-.78-.719-.47-3.03-2.093c1.058-1.168 2.023-1.813 2.437-2.063z"
+      ></path>
+    </svg>
+),
+  bug: (props: LucideProps) => (
+      
+      <svg
+          xmlns='http:
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          className='h-6 w-6'
+          {...props}
+      >
+        <path d='m8 2 1.88 1.88'/>
+        <path d='M14.12 3.88 16 2'/>
+        <path d='M9 7.13v-1a3.003 3.003 0 1 1 6 0v1'/>
+        <path d='M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6'/>
+        <path d='M12 20v-9'/>
+        <path d='M6.53 9C4.6 8.8 3 7.1 3 5'/>
+        <path d='M6 13H2'/>
+        <path d='M3 21c0-2.1 1.7-3.9 3.8-4'/>
+        <path d='M20.97 5c0 2.1-1.6 3.8-3.5 4'/>
+        <path d='M22 13h-4'/>
+        <path d='M17.2 17c2.1.1 3.8 1.9 3.8 4'/>
+      </svg>
+  ),
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/site/Contact/ContactListItem.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/site/Contact/Form.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/site/Reviews.tsx
+type review = {
+  id: number
+  name: string
+  image: string
+  text: string
+  stars: number
+}
+
+const reviews: review[] = [
+  {
+    id: 1,
+    name: "Frida Kahlo",
+    image: "/images/reviews/frida-kahlo.jpg",
+    text: "I am very happy with the results. It was exactly what I wanted. I highly recommend it.",
+    stars: 5,
+  },
+  {
+    id: 2,
+    name: "Elon Musk",
+    image: "/images/reviews/elon-musk.jpg",
+    text: "I am happy with the results. It was exactly what I wanted. I highly recommend it.",
+    stars: 5,
+  },
+]
+
+export default function Reviews() {
+  return (
+    <section id='reviews' className='py-10'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+        <div className='mx-auto max-w-2xl'>
+          <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+            What people are saying about us 👋 👋 👋 👋
+          </h2>
+          <p className='mt-6 text-lg leading-8 text-gray-600'>
+            What people are saying about us. We love to hear from you.
+          </p>
+        </div>
+        {reviews.map(review => (
+          <div
+            key={review.id}
+            className='mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:pt-0'
+          >
+            <div className='lg:col-span-2 lg:col-start-2'>
+              <div className='flex items-center'>
+                <img className='h-16 w-16' src={review.image} alt={review.name} />
+                <div className='ml-4'>
+                  <p className='text-sm font-semibold leading-6 text-gray-900'>{review.name}</p>
+                </div>
+              </div>
+              <div className='mt-4 text-sm leading-6 text-gray-600'>
+                <p>{review.text}</p>
+              </div>
+              <div className='mt-4'>
+                <div className='-ml-4 -mt-2 flex'>
+                  {[0, 1, 2, 3, 4].map(star => (
+                    <svg
+                      key={star}
+                      className={classNames(
+                        review.stars > star ? "text-gray-900" : "text-gray-200",
+                        "h-5 w-5 flex-shrink-0"
+                      )}
+                      viewBox='0 0 20 20'
+                      fill='currentColor'
+                      aria-hidden='true'
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/skeletons/Skeletons.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/avatar.tsx
+"use client"
+
+import * as React from "react"
+import * as AvatarPrimitive from "@radix-ui/react-avatar"
+
+import { cn } from "@/lib/utils"
+
+const Avatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      className
+    )}
+    {...props}
+  />
+))
+Avatar.displayName = AvatarPrimitive.Root.displayName
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn("aspect-square h-full w-full", className)}
+    {...props}
+  />
+))
+AvatarImage.displayName = AvatarPrimitive.Image.displayName
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={cn(
+      "flex h-full w-full items-center justify-center rounded-full bg-muted",
+      className
+    )}
+    {...props}
+  />
+))
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+
+export { Avatar, AvatarImage, AvatarFallback }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/button.tsx
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline: "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/card.tsx
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/dialog.tsx
+"use client"
+
+import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { Cross2Icon } from "@radix-ui/react-icons"
+
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+
+const DialogTrigger = DialogPrimitive.Trigger
+
+const DialogPortal = DialogPrimitive.Portal
+
+const DialogClose = DialogPrimitive.Close
+
+const DialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  />
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <Cross2Icon className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+DialogHeader.displayName = "DialogHeader"
+
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+DialogFooter.displayName = "DialogFooter"
+
+const DialogTitle = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+))
+DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+const DialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogTrigger,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/dropdown-menu.tsx
+"use client"
+
+import * as React from "react"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  DotFilledIcon,
+} from "@radix-ui/react-icons"
+
+import { cn } from "@/lib/utils"
+
+const DropdownMenu = DropdownMenuPrimitive.Root
+
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+
+const DropdownMenuGroup = DropdownMenuPrimitive.Group
+
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+
+const DropdownMenuSub = DropdownMenuPrimitive.Sub
+
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+
+const DropdownMenuSubTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
+    inset?: boolean
+  }
+>(({ className, inset, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubTrigger
+    ref={ref}
+    className={cn(
+      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent",
+      inset && "pl-8",
+      className
+    )}
+    {...props}
+  >
+    {children}
+    <ChevronRightIcon className="ml-auto h-4 w-4" />
+  </DropdownMenuPrimitive.SubTrigger>
+))
+DropdownMenuSubTrigger.displayName =
+  DropdownMenuPrimitive.SubTrigger.displayName
+
+const DropdownMenuSubContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubContent
+    ref={ref}
+    className={cn(
+      "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props}
+  />
+))
+DropdownMenuSubContent.displayName =
+  DropdownMenuPrimitive.SubContent.displayName
+
+const DropdownMenuContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props}
+    />
+  </DropdownMenuPrimitive.Portal>
+))
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+
+const DropdownMenuItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
+    inset?: boolean
+  }
+>(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      inset && "pl-8",
+      className
+    )}
+    {...props}
+  />
+))
+DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
+
+const DropdownMenuCheckboxItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
+>(({ className, children, checked, ...props }, ref) => (
+  <DropdownMenuPrimitive.CheckboxItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    checked={checked}
+    {...props}
+  >
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <CheckIcon className="h-4 w-4" />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    {children}
+  </DropdownMenuPrimitive.CheckboxItem>
+))
+DropdownMenuCheckboxItem.displayName =
+  DropdownMenuPrimitive.CheckboxItem.displayName
+
+const DropdownMenuRadioItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
+>(({ className, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    {...props}
+  >
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <DotFilledIcon className="h-4 w-4 fill-current" />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    {children}
+  </DropdownMenuPrimitive.RadioItem>
+))
+DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
+
+const DropdownMenuLabel = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
+    inset?: boolean
+  }
+>(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Label
+    ref={ref}
+    className={cn(
+      "px-2 py-1.5 text-sm font-semibold",
+      inset && "pl-8",
+      className
+    )}
+    {...props}
+  />
+))
+DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+
+const DropdownMenuSeparator = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+    {...props}
+  />
+))
+DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
+
+const DropdownMenuShortcut = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <span
+      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+      {...props}
+    />
+  )
+}
+DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
+
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/form.tsx
+import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { Slot } from "@radix-ui/react-slot"
+import {
+  Controller,
+  ControllerProps,
+  FieldPath,
+  FieldValues,
+  FormProvider,
+  useFormContext,
+} from "react-hook-form"
+
+import { cn } from "@/lib/utils"
+import { Label } from "@/components/ui/label"
+
+const Form = FormProvider
+
+type FormFieldContextValue<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> = {
+  name: TName
+}
+
+const FormFieldContext = React.createContext<FormFieldContextValue>(
+  {} as FormFieldContextValue
+)
+
+const FormField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  ...props
+}: ControllerProps<TFieldValues, TName>) => {
+  return (
+    <FormFieldContext.Provider value={{ name: props.name }}>
+      <Controller {...props} />
+    </FormFieldContext.Provider>
+  )
+}
+
+const useFormField = () => {
+  const fieldContext = React.useContext(FormFieldContext)
+  const itemContext = React.useContext(FormItemContext)
+  const { getFieldState, formState } = useFormContext()
+
+  const fieldState = getFieldState(fieldContext.name, formState)
+
+  if (!fieldContext) {
+    throw new Error("useFormField should be used within <FormField>")
+  }
+
+  const { id } = itemContext
+
+  return {
+    id,
+    name: fieldContext.name,
+    formItemId: `${id}-form-item`,
+    formDescriptionId: `${id}-form-item-description`,
+    formMessageId: `${id}-form-item-message`,
+    ...fieldState,
+  }
+}
+
+type FormItemContextValue = {
+  id: string
+}
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue
+)
+
+const FormItem = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const id = React.useId()
+
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <div ref={ref} className={cn("space-y-2", className)} {...props} />
+    </FormItemContext.Provider>
+  )
+})
+FormItem.displayName = "FormItem"
+
+const FormLabel = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+>(({ className, ...props }, ref) => {
+  const { error, formItemId } = useFormField()
+
+  return (
+    <Label
+      ref={ref}
+      className={cn(error && "text-destructive", className)}
+      htmlFor={formItemId}
+      {...props}
+    />
+  )
+})
+FormLabel.displayName = "FormLabel"
+
+const FormControl = React.forwardRef<
+  React.ElementRef<typeof Slot>,
+  React.ComponentPropsWithoutRef<typeof Slot>
+>(({ ...props }, ref) => {
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
+
+  return (
+    <Slot
+      ref={ref}
+      id={formItemId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
+      aria-invalid={!!error}
+      {...props}
+    />
+  )
+})
+FormControl.displayName = "FormControl"
+
+const FormDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => {
+  const { formDescriptionId } = useFormField()
+
+  return (
+    <p
+      ref={ref}
+      id={formDescriptionId}
+      className={cn("text-[0.8rem] text-muted-foreground", className)}
+      {...props}
+    />
+  )
+})
+FormDescription.displayName = "FormDescription"
+
+const FormMessage = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, children, ...props }, ref) => {
+  const { error, formMessageId } = useFormField()
+  const body = error ? String(error?.message) : children
+
+  if (!body) {
+    return null
+  }
+
+  return (
+    <p
+      ref={ref}
+      id={formMessageId}
+      className={cn("text-[0.8rem] font-medium text-destructive", className)}
+      {...props}
+    >
+      {body}
+    </p>
+  )
+})
+FormMessage.displayName = "FormMessage"
+
+export {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/input.tsx
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Input.displayName = "Input"
+
+export { Input }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/label.tsx
+"use client"
+
+import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+)
+
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+    VariantProps<typeof labelVariants>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(labelVariants(), className)}
+    {...props}
+  />
+))
+Label.displayName = LabelPrimitive.Root.displayName
+
+export { Label }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/select.tsx
+"use client"
+
+import * as React from "react"
+import {
+  CaretSortIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "@radix-ui/react-icons"
+import * as SelectPrimitive from "@radix-ui/react-select"
+
+import { cn } from "@/lib/utils"
+
+const Select = SelectPrimitive.Root
+
+const SelectGroup = SelectPrimitive.Group
+
+const SelectValue = SelectPrimitive.Value
+
+const SelectTrigger = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <SelectPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      className
+    )}
+    {...props}
+  >
+    {children}
+    <SelectPrimitive.Icon asChild>
+      <CaretSortIcon className="h-4 w-4 opacity-50" />
+    </SelectPrimitive.Icon>
+  </SelectPrimitive.Trigger>
+))
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+
+const SelectScrollUpButton = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.ScrollUpButton
+    ref={ref}
+    className={cn(
+      "flex cursor-default items-center justify-center py-1",
+      className
+    )}
+    {...props}
+  >
+    <ChevronUpIcon />
+  </SelectPrimitive.ScrollUpButton>
+))
+SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+
+const SelectScrollDownButton = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.ScrollDownButton
+    ref={ref}
+    className={cn(
+      "flex cursor-default items-center justify-center py-1",
+      className
+    )}
+    {...props}
+  >
+    <ChevronDownIcon />
+  </SelectPrimitive.ScrollDownButton>
+))
+SelectScrollDownButton.displayName =
+  SelectPrimitive.ScrollDownButton.displayName
+
+const SelectContent = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
+>(({ className, children, position = "popper", ...props }, ref) => (
+  <SelectPrimitive.Portal>
+    <SelectPrimitive.Content
+      ref={ref}
+      className={cn(
+        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        position === "popper" &&
+          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+        className
+      )}
+      position={position}
+      {...props}
+    >
+      <SelectScrollUpButton />
+      <SelectPrimitive.Viewport
+        className={cn(
+          "p-1",
+          position === "popper" &&
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+        )}
+      >
+        {children}
+      </SelectPrimitive.Viewport>
+      <SelectScrollDownButton />
+    </SelectPrimitive.Content>
+  </SelectPrimitive.Portal>
+))
+SelectContent.displayName = SelectPrimitive.Content.displayName
+
+const SelectLabel = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Label
+    ref={ref}
+    className={cn("px-2 py-1.5 text-sm font-semibold", className)}
+    {...props}
+  />
+))
+SelectLabel.displayName = SelectPrimitive.Label.displayName
+
+const SelectItem = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
+>(({ className, children, ...props }, ref) => (
+  <SelectPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    {...props}
+  >
+    <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
+      <SelectPrimitive.ItemIndicator>
+        <CheckIcon className="h-4 w-4" />
+      </SelectPrimitive.ItemIndicator>
+    </span>
+    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+  </SelectPrimitive.Item>
+))
+SelectItem.displayName = SelectPrimitive.Item.displayName
+
+const SelectSeparator = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+    {...props}
+  />
+))
+SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/separator.tsx
+"use client"
+
+import * as React from "react"
+import * as SeparatorPrimitive from "@radix-ui/react-separator"
+
+import { cn } from "@/lib/utils"
+
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+>(
+  (
+    { className, orientation = "horizontal", decorative = true, ...props },
+    ref
+  ) => (
+    <SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-border",
+        orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+        className
+      )}
+      {...props}
+    />
+  )
+)
+Separator.displayName = SeparatorPrimitive.Root.displayName
+
+export { Separator }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/sheet.tsx
+"use client"
+
+import * as React from "react"
+import * as SheetPrimitive from "@radix-ui/react-dialog"
+import { Cross2Icon } from "@radix-ui/react-icons"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const Sheet = SheetPrimitive.Root
+
+const SheetTrigger = SheetPrimitive.Trigger
+
+const SheetClose = SheetPrimitive.Close
+
+const SheetPortal = SheetPrimitive.Portal
+
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+))
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
+
+const sheetVariants = cva(
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom:
+          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        right:
+          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+)
+
+interface SheetContentProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+    VariantProps<typeof sheetVariants> {}
+
+const SheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  SheetContentProps
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <Cross2Icon className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </SheetPrimitive.Close>
+    </SheetPrimitive.Content>
+  </SheetPortal>
+))
+SheetContent.displayName = SheetPrimitive.Content.displayName
+
+const SheetHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-2 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+SheetHeader.displayName = "SheetHeader"
+
+const SheetFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+SheetFooter.displayName = "SheetFooter"
+
+const SheetTitle = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title
+    ref={ref}
+    className={cn("text-lg font-semibold text-foreground", className)}
+    {...props}
+  />
+))
+SheetTitle.displayName = SheetPrimitive.Title.displayName
+
+const SheetDescription = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+SheetDescription.displayName = SheetPrimitive.Description.displayName
+
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/skeleton.tsx
+import { cn } from "@/lib/utils"
+
+function Skeleton({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn("animate-pulse rounded-md bg-primary/10", className)}
+      {...props}
+    />
+  )
+}
+
+export { Skeleton }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/textarea.tsx
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+export interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <textarea
+        className={cn(
+          "flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Textarea.displayName = "Textarea"
+
+export { Textarea }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/toast.tsx
+import * as React from "react"
+import { Cross2Icon } from "@radix-ui/react-icons"
+import * as ToastPrimitives from "@radix-ui/react-toast"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const ToastProvider = ToastPrimitives.Provider
+
+const ToastViewport = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Viewport>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Viewport
+    ref={ref}
+    className={cn(
+      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      className
+    )}
+    {...props}
+  />
+))
+ToastViewport.displayName = ToastPrimitives.Viewport.displayName
+
+const toastVariants = cva(
+  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+  {
+    variants: {
+      variant: {
+        default: "border bg-background text-foreground",
+        destructive:
+          "destructive group border-destructive bg-destructive text-destructive-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+const Toast = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Root>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
+    VariantProps<typeof toastVariants>
+>(({ className, variant, ...props }, ref) => {
+  return (
+    <ToastPrimitives.Root
+      ref={ref}
+      className={cn(toastVariants({ variant }), className)}
+      {...props}
+    />
+  )
+})
+Toast.displayName = ToastPrimitives.Root.displayName
+
+const ToastAction = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Action>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Action
+    ref={ref}
+    className={cn(
+      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors hover:bg-secondary focus:outline-none focus:ring-1 focus:ring-ring disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+      className
+    )}
+    {...props}
+  />
+))
+ToastAction.displayName = ToastPrimitives.Action.displayName
+
+const ToastClose = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Close>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Close
+    ref={ref}
+    className={cn(
+      "absolute right-1 top-1 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-1 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      className
+    )}
+    toast-close=""
+    {...props}
+  >
+    <Cross2Icon className="h-4 w-4" />
+  </ToastPrimitives.Close>
+))
+ToastClose.displayName = ToastPrimitives.Close.displayName
+
+const ToastTitle = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Title>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Title
+    ref={ref}
+    className={cn("text-sm font-semibold [&+div]:text-xs", className)}
+    {...props}
+  />
+))
+ToastTitle.displayName = ToastPrimitives.Title.displayName
+
+const ToastDescription = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Description>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Description
+    ref={ref}
+    className={cn("text-sm opacity-90", className)}
+    {...props}
+  />
+))
+ToastDescription.displayName = ToastPrimitives.Description.displayName
+
+type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
+
+type ToastActionElement = React.ReactElement<typeof ToastAction>
+
+export {
+  type ToastProps,
+  type ToastActionElement,
+  ToastProvider,
+  ToastViewport,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+  ToastAction,
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/toaster.tsx
+"use client"
+
+import {
+  Toast,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+} from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
+
+export function Toaster() {
+  const { toasts } = useToast()
+
+  return (
+    <ToastProvider>
+      {toasts.map(function ({ id, title, description, action, ...props }) {
+        return (
+          <Toast key={id} {...props}>
+            <div className="grid gap-1">
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && (
+                <ToastDescription>{description}</ToastDescription>
+              )}
+            </div>
+            {action}
+            <ToastClose />
+          </Toast>
+        )
+      })}
+      <ToastViewport />
+    </ToastProvider>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/tooltip.tsx
+"use client"
+
+import * as React from "react"
+import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+
+import { cn } from "@/lib/utils"
+
+const TooltipProvider = TooltipPrimitive.Provider
+
+const Tooltip = TooltipPrimitive.Root
+
+const TooltipTrigger = TooltipPrimitive.Trigger
+
+const TooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <TooltipPrimitive.Content
+    ref={ref}
+    sideOffset={sideOffset}
+    className={cn(
+      "z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props}
+  />
+))
+TooltipContent.displayName = TooltipPrimitive.Content.displayName
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+
+
+
+
+
+
+
+
+
+
+// src/components/ui/use-toast.ts
+
+import * as React from "react"
+
+import type {
+  ToastActionElement,
+  ToastProps,
+} from "@/components/ui/toast"
+
+const TOAST_LIMIT = 1
+const TOAST_REMOVE_DELAY = 1000000
+
+type ToasterToast = ToastProps & {
+  id: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+  action?: ToastActionElement
+}
+
+const actionTypes = {
+  ADD_TOAST: "ADD_TOAST",
+  UPDATE_TOAST: "UPDATE_TOAST",
+  DISMISS_TOAST: "DISMISS_TOAST",
+  REMOVE_TOAST: "REMOVE_TOAST",
+} as const
+
+let count = 0
+
+function genId() {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER
+  return count.toString()
+}
+
+type ActionType = typeof actionTypes
+
+type Action =
+  | {
+      type: ActionType["ADD_TOAST"]
+      toast: ToasterToast
+    }
+  | {
+      type: ActionType["UPDATE_TOAST"]
+      toast: Partial<ToasterToast>
+    }
+  | {
+      type: ActionType["DISMISS_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
+  | {
+      type: ActionType["REMOVE_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
+
+interface State {
+  toasts: ToasterToast[]
+}
+
+const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
+
+const addToRemoveQueue = (toastId: string) => {
+  if (toastTimeouts.has(toastId)) {
+    return
+  }
+
+  const timeout = setTimeout(() => {
+    toastTimeouts.delete(toastId)
+    dispatch({
+      type: "REMOVE_TOAST",
+      toastId: toastId,
+    })
+  }, TOAST_REMOVE_DELAY)
+
+  toastTimeouts.set(toastId, timeout)
+}
+
+export const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "ADD_TOAST":
+      return {
+        ...state,
+        toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
+      }
+
+    case "UPDATE_TOAST":
+      return {
+        ...state,
+        toasts: state.toasts.map((t) =>
+          t.id === action.toast.id ? { ...t, ...action.toast } : t
+        ),
+      }
+
+    case "DISMISS_TOAST": {
+      const { toastId } = action
+
+      
+      
+      if (toastId) {
+        addToRemoveQueue(toastId)
+      } else {
+        state.toasts.forEach((toast) => {
+          addToRemoveQueue(toast.id)
+        })
+      }
+
+      return {
+        ...state,
+        toasts: state.toasts.map((t) =>
+          t.id === toastId || toastId === undefined
+            ? {
+                ...t,
+                open: false,
+              }
+            : t
+        ),
+      }
+    }
+    case "REMOVE_TOAST":
+      if (action.toastId === undefined) {
+        return {
+          ...state,
+          toasts: [],
+        }
+      }
+      return {
+        ...state,
+        toasts: state.toasts.filter((t) => t.id !== action.toastId),
+      }
+  }
+}
+
+const listeners: Array<(state: State) => void> = []
+
+let memoryState: State = { toasts: [] }
+
+function dispatch(action: Action) {
+  memoryState = reducer(memoryState, action)
+  listeners.forEach((listener) => {
+    listener(memoryState)
+  })
+}
+
+type Toast = Omit<ToasterToast, "id">
+
+function toast({ ...props }: Toast) {
+  const id = genId()
+
+  const update = (props: ToasterToast) =>
+    dispatch({
+      type: "UPDATE_TOAST",
+      toast: { ...props, id },
+    })
+  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
+
+  dispatch({
+    type: "ADD_TOAST",
+    toast: {
+      ...props,
+      id,
+      open: true,
+      onOpenChange: (open) => {
+        if (!open) dismiss()
+      },
+    },
+  })
+
+  return {
+    id: id,
+    dismiss,
+    update,
+  }
+}
+
+function useToast() {
+  const [state, setState] = React.useState<State>(memoryState)
+
+  React.useEffect(() => {
+    listeners.push(setState)
+    return () => {
+      const index = listeners.indexOf(setState)
+      if (index > -1) {
+        listeners.splice(index, 1)
+      }
+    }
+  }, [state])
+
+  return {
+    ...state,
+    toast,
+    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
+  }
+}
+
+export { useToast, toast }
+
+
+
+
+
+
+
+
+
+
+// src/config/dashboardRoutes.tsx
+
+
+import { DashboardIcons } from "@/icons/dashboardIcons"
+
+export const dashboardRoutes = [
+  {
+    label: "Главная",
+    href: "/dashboard",
+    icon: <DashboardIcons.home className='' />,
+  },
+
+  {
+    label: "Пользователи",
+    href: "/dashboard/users",
+    icon: <DashboardIcons.users className='' />,
+  },
+  {
+    label: "Добавить пользователя",
+    href: "/dashboard/users/new",
+    icon: <DashboardIcons.userPlus className='' />,
+  },
+  {
+    label: "Профиль пользователя",
+    href: "/dashboard/profile",
+    icon: <DashboardIcons.profile className='' />,
+  },
+  {
+    label: "Уведомления",
+    href: "/dashboard/notifications",
+    icon: <DashboardIcons.notifications className='' />,
+  },
+  {
+    label: "Настройки",
+    href: "/dashboard/settings",
+    icon: <DashboardIcons.settings className='h-[19px] w-[19px]' />,
+  },
+]
+
+
+
+
+
+
+
+
+
+
+// src/config/emailOptions.ts
+export type EmailOptions = typeof emailOptions
+
+
+export const emailOptions = {
+    fromAdmin: 'АДМИНКА 777 <ptzrem@yandex.ru>',
+    fromSite: 'СЕРВИС 777 <ptzrem@yandex.ru>',
+    user: "ptzrem",
+    
+    pass: "jlqdnaeilhucbdeo"
+}
+
+
+
+
+
+
+
+
+
+// src/config/siteRoutes.ts
+
+
+
+
+
+
+
+
+
+
+// src/hooks/use-local-storage.ts
+
+
+
+
+
+
+
+
+
+
+// src/hooks/use-pro-modal.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/config/index.ts
+
+
+export type SiteConfig = typeof siteConfig
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const siteConfig = {
+  name: "Сервисный центр 777",
+  shortName: "Сервис 777",
+  shortAddress: "пр.Ленина 12",
+  longAddress: "г.Петрозаводск, пр.Ленина 12",
+  city: {
+    name: "Петрозаводск",
+    shortName: "ПТЗ",
+    wordForms: {
+      nominative: "Петрозаводск", 
+      genitive: "Петрозаводска", 
+      dative: "Петрозаводску", 
+      accusative: "Петрозаводск", 
+      instrumental: "Петрозаводском", 
+      prepositional: "Петрозаводске", 
+    },
+    republic: {
+      name: "Республика Карелия",
+      shortName: "РК",
+    },
+  },
+  description: `🔥 Качественный ремонт телефонов, айфонов, ноутбуков, компьютеров ⭐по лучшей цене⭐ в Петрозаводске. Срочный ремонт от 15 минут. ☎️ +7 (8142) 500-777. Заходите!️`,
+
+  Phones: {
+    cityCode: "+7 (8142)",
+    mainPhone: "+7 (8142) 500-777",
+    shortMainPhone: "500-777",
+    mobileMainPhone: "+7 (981) 410-07-77",
+    secondaryPhone: "+7 (8142) 260-777",
+    shortSecondaryPhone: "260-777",
+    mobileSecondaryPhone: "+7 (921) 726-07-77",
+  },
+  url: "https:
+  email: "ptzservice@yandex.ru",
+
+  
+  get companyNameAndAddress() {
+    return `${this.name}, ${this.longAddress}`
+  },
+  get companyNameAndAddressAndPhone() {
+    return `${this.name}, ${this.longAddress}, ${this.Phones.mainPhone}`
+  },
+
+  get formattedNameAndAddress() {
+    return `⭐️ ${this.name}, ${this.longAddress} ⭐`
+  },
+  
+  get formattedNameAndPhone() {
+    return `⭐️ ${this.name}, ☎️ ${this.Phones.mainPhone} ⭐`
+  },
+  
+  get formattedShortAddressAndPhone() {
+    return `⭐️ ${this.shortAddress}, ☎️ ${this.Phones.mainPhone}`
+  },
+
+  
+  get formattedNameAndAddressAndPhoneAndEmoji() {
+    return `⭐️ ${this.name}, ${this.longAddress}, ☎️ ${this.Phones.mainPhone}`
+  },
+
+  verification: {
+    google: "google-verification-code",
+    yandex: "yandex-verification-code",
+  },
+  links: {
+    vk: "https:
+    ok: "https:
+    instagram: "https:
+    facebook: "https:
+
+    messengers: {
+      vk: "https:
+      telegram: "https:
+      whatsapp: "https:
+      viber: "https:
+    },
+  },
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/hooks/use-scroll.tsx
+import { useCallback, useEffect, useState } from "react"
+
+export default function useScroll(threshold: number) {
+  const [scrolled, setScrolled] = useState(false)
+
+  const onScroll = useCallback(() => {
+    setScrolled(window.scrollY > threshold)
+  }, [threshold])
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [onScroll])
+
+  
+  useEffect(() => {
+    onScroll()
+  }, [onScroll])
+
+  return scrolled
+}
+
+
+
+
+
+
+
+
+
+
+// src/lib/auth/auth.config.ts
+
+
+export const authConfig = {
+  pages: {
+    signOut: "/",
+    signIn: "/login",
+    error: "/login",
+    newUser: "/register",
+  },
+
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user
+      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
+      if (isOnDashboard) {
+        return isLoggedIn
+      } else if (isLoggedIn && nextUrl.pathname.startsWith("/login")) {
+        return Response.redirect(new URL("/dashboard", nextUrl))
+      } else if (isLoggedIn && nextUrl.pathname.startsWith("/register")) {
+        return Response.redirect(new URL("/dashboard", nextUrl))
+      }
+      return true
+    },
+  },
+  providers: [],
+  secret: process.env.NEXTAUTH_SECRET,
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// src/lib/auth/auth.ts
+
+
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import type { User } from "@prisma/client"
+import bcrypt from "bcrypt"
+import NextAuth from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+import GitHub from "next-auth/providers/github"
+import Google from "next-auth/providers/google"
+import { authConfig } from "@/lib/auth/auth.config"
+import prismadb from "@/lib/prisma/prismadb"
+import {Role} from "@/types";
+
+export type { Session } from "next-auth"
+
+const login = async (credentials: any) => {
+  try {
+    const user = await prismadb.user.findUnique({
+      where: {
+        email: credentials.email,
+      },
+    })
+    if (!user) throw new Error("Неправильный логин или пароль.")
+
+    
+    const isPasswordCorrect = bcrypt.compareSync(credentials.password, user.hashedPassword)
+
+    if (!isPasswordCorrect) throw new Error("Неправильный логин или пароль.")
+    return user
+  } catch (error) {
+    throw new Error("Неправильный логин или пароль.")
+  }
+}
+
+export const {
+  signIn,
+  signOut,
+  auth,
+  handlers: { GET, POST },
+} = NextAuth({
+  ...authConfig,
+  providers: [
+    Google({
+      
+      
+    }),
+    GitHub({
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          email: profile.email,
+          name: profile.name ?? profile.login,
+          image: profile.avatar_url,
+        }
+      },
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    CredentialsProvider({
+      name: "credentials",
+      async authorize(credentials){
+        try {
+          const user = await login(credentials)
+          return user
+        } catch (err) {
+          console.log(err)
+          
+          return null;
+          
+          
+          
+        }
+      },
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      session: {
+        strategy: "jwt",
+        maxAge: 7 * 24 * 60 * 60, 
+        updateAge: 24 * 60 * 60,
+      },
+    }),
+  ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+        token.name = user.name
+        token.phone = user.phone
+        token.role = user.role
+        token.image = user.image
+        token.emailVerified = user.emailVerified
+
+
+
+        
+          
+          
+          
+          
+          
+          
+          
+        
+      }
+      return token
+    },
+    async session({ session, token }) {
+
+      const user = await prismadb.user.findUnique({
+        where: {
+          id: token.sub,
+        },
+      });
+
+        return {
+          ...session,
+          user: {
+            ...session.user,
+            email: user?.email as string,
+            name: user?.name as string,
+            image: user?.image as string,
+            id: token.id,
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+
+
+          },
+        }
+
+
+    },
+  },
+
+  events: {
+
+    async signIn({ user }) {
+      if (user) {
+        await prismadb.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            emailVerified: new Date(),
+          },
+        })
+      }
+    },
+
+
+  },
+
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60,
+  }
+})
+
+export async function getCurrentUser(){
+  const session = await auth()
+  return session?.user;
+}
+
+
+export async function getCurrentSession(){
+  const session = await auth()
+  return session;
+}
+
+
+
+
+
+
+
+
+
+
+// src/lib/fonts.ts
+import {
+  Comfortaa as FontComfortaa,
+  Montserrat as FontMontserrat,
+  Inter as FontSans,
+} from "next/font/google"
+
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+export const fontMontserrat = FontMontserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+})
+export const fontComfortaa = FontComfortaa({
+  subsets: ["latin"],
+  variable: "--font-comfortaa",
+})
+
+
+
+
+
+
+
+
+
+
+// src/lib/prisma/prismadb.ts
+
+import { PrismaClient } from "@prisma/client"
+
+declare global {
+  var prisma: PrismaClient | undefined
+}
+
+const prismadb =
+  globalThis.prisma ||
+  new PrismaClient({
+    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+  })
+if (process.env.NODE_ENV !== "production") globalThis.prisma = prismadb
+
+export default prismadb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/lib/utils.ts
+
+
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/middleware.ts
+
+import NextAuth from "next-auth"
+import { authConfig } from "@/lib/auth/auth.config"
+
+export default NextAuth(authConfig).auth
+
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+}
+
+
+
+
+
+
+
+
+
+
+// src/providers/providers.tsx
+
+
+"use client"
+
+import React, { useEffect, useState } from "react"
+import { ThemeProvider } from "@/providers/ThemeProvider"
+import { TooltipProvider } from "@/ui/tooltip"
+import { Toaster } from "sonner"
+import { TailwindIndicator } from "@/components/dev/TailwindIndicator"
+
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+const Providers = ({ children }: RootLayoutProps) => {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  if (!mounted) return null
+
+  return (
+    <TooltipProvider delayDuration={300} skipDelayDuration={0} openDelay={500} closeDelay={300}>
+      <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+        {children}
+
+        <TailwindIndicator />
+        <Toaster expand richColors />
+      </ThemeProvider>
+    </TooltipProvider>
+  )
+}
+export default Providers
+
+
+
+
+
+
+
+
+
+
+// src/providers/ThemeProvider.tsx
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import type { ThemeProviderProps } from "next-themes/dist/types"
+
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+
+
+
+
+
+
+
+
+
+
+// src/schemas/ChangePasswordSchema.ts
+import * as z from "zod"
+
+export const changePasswordSchema = z
+  .object({
+    oldPassword: z.string({
+      required_error: "Старый пароль обязателен.",
+      invalid_type_error: "Неверенный тип данных.",
+    }),
+    newPassword: z
+      .string({
+        required_error: "Новый пароль обязателен.",
+        invalid_type_error: "Неверенный тип данных.",
+      })
+      .min(7, {
+        message: "Пароль должен состоять не менее чем из 7 символов.",
+      })
+      .max(64, {
+        message: "Пароль должен состоять не более чем из 64 символов.",
+      }),
+    passwordConfirmation: z
+      .string({
+        required_error: "Подтверждение пароля обязательно.",
+        invalid_type_error: "Неверенный тип данных.",
+      })
+      .max(64, { message: "Пароль должен состоять не более чем из 64 символов." }),
+  })
+  .refine(data => data.newPassword !== data.oldPassword, {
+    message: "Новый пароль должен отличаться от старого.",
+    path: ["newPassword"],
+  })
+  .refine(data => data.newPassword === data.passwordConfirmation, {
+    message: "Пароли не совпадают.",
+    path: ["passwordConfirmation"],
+  })
+
+export type ChangePasswordType = z.infer<typeof changePasswordSchema>
+
+
+
+
+
+
+
+
+
+
+// src/schemas/FeedbackFormSchema.ts
+
+
+import { z } from "zod"
+
+const FeedbackTypes = z.enum(["bug", "question", "suggestion","review" , "other"], {
+    errorMap: () => ({
+        message: "Необходимо выбрать тип ",
+    }),
+})
+
+export const createFeedbackFormSchema = z.object({
+    feedbackType: FeedbackTypes,
+  message: z.string().min(5, { message: "Не меньше 50 символов" }).max(650, { message: "Не больше 650 символов" }),
+})
+
+export type createFeedbackFormSchemaType = z.infer<typeof createFeedbackFormSchema>
+
+
+
+
+
+
+
+
+
+
+// src/schemas/LoginSchema.ts
+import * as z from "zod"
+
+export const loginSchema = z.object({
+  email: z
+    .string({ required_error: "Email обязателен.", invalid_type_error: "Невереный тип данных." })
+    .min(5, { message: "Email должен состоять не менее чем из 5 символов." })
+    .max(64, { message: "Email должен состоять не более чем из 64 символов." })
+    .email({ message: "Неверный адрес электронной почты." }),
+  password: z
+    .string({ required_error: "Пароль обязателен.", invalid_type_error: "Неверенный тип данных." })
+    .min(7, { message: "Пароль должен состоять более чем из 7 символов." })
+    .max(64, { message: "Пароль должен состоять не более чем из 64 символов." }),
+})
+
+export type LoginType = z.infer<typeof loginSchema>
+
+
+
+
+
+
+
+
+
+
+// src/schemas/ProfileFormSchema.ts
+
+
+import { z } from "zod";
+
+
+export const profileFormSchema = z.object({
+    name: z
+        .string()
+        .min(3, { message: "Имя должно состоять не менее чем из 3 символов." })
+        .max(50, { message: "Имя должно состоять не более чем из 50 символов." }),
+    
+    
+    image: z.union([z.string(), z.literal(null)]).optional(),
+
+})
+
+export type profileFormSchemaType = z.infer<typeof profileFormSchema>;
+
+
+
+
+
+
+
+
+
+// src/schemas/RegisterSchema.ts
+import * as z from "zod"
+
+export const RegisterSchema = z
+  .object({
+    name: z
+      .string({ required_error: "Имя обязательно.", invalid_type_error: "Невереный тип данных." })
+      .min(3, {
+        message: "Имя должно состоять не менее чем из 3 символов.",
+      })
+      .max(50, { message: "Имя должно состоять не более чем из 50 символов." }),
+    email: z
+      .string({ required_error: "Email обязателен.", invalid_type_error: "Невереный тип данных." })
+      .min(5, {
+        message: "Email должен состоять не менее чем из 5 символов.",
+      })
+      .max(64, {
+        message: "Email должен состоять не более чем из 64 символов.",
+      })
+      .email({
+        message: "Неверный адрес электронной почты.",
+      }),
+    password: z
+      .string({ required_error: "Пароль обязателен.", invalid_type_error: "Невереный тип данных." })
+      .min(7, {
+        message: "Пароль должен состоять не менее чем из 7 символов.",
+      })
+      .max(64, {
+        message: "Пароль должен состоять не более чем из 64 символов.",
+      }),
+    confirmPassword: z
+      .string({ required_error: "Пароль обязателен.", invalid_type_error: "Невереный тип данных." })
+      .min(7, {
+        message: "Пароль должен состоять не менее чем из 7 символов.",
+      })
+      .max(64, {
+        message: "Пароль должен состоять не более чем из 64 символов.",
+      }),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Пароли не совпадают.",
+    path: ["confirmPassword"],
+  })
+
+export type RegisterSchemaType = z.infer<typeof RegisterSchema>
+
+
+
+
+
+
+
+
+
+
+// src/styles/globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@layer components {
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+}
+
+
+ 
+@layer base {
+
+  :root {
+    
+    
+    
+
+    --background: 210 40% 96%;
+    --foreground: 240 10% 3.9%;
+
+    
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    
+    
+
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+ 
+@layer base {
+  * {
+
+    @apply border-border;
+
+
+    
+    
+
+    
+    
+    
+
+
+
+  }
+  body {
+    @apply bg-background text-foreground;
+
+    font-feature-settings: "rlig" 1, "calt" 1;
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+  }
+}
+
+
+@layer components {
+
+  .dashboard-panels-bg {
+    @apply bg-slate-100 dark:bg-black;
+
+  }
+  
+  
+
+
+  
+  
+
+  .focus-button {
+    @apply select-none !outline-none focus:!outline-none focus:!ring-0 active:!ring-0 hover:!ring-0 visited:!ring-0;
+    @apply focus-visible:!ring-2 focus-visible:!ring-[#0969da] dark:focus-visible:!ring-[#2f81f7] overflow-hidden;
+  }
+
+  .focus {
+    @apply !outline-none focus:!outline-none focus:!ring-0 active:!ring-0 hover:!ring-0 visited:!ring-0 ;
+    @apply focus-visible:!ring-2 focus-visible:!ring-[#0969da] dark:focus-visible:!ring-[#2f81f7] overflow-hidden;
+  }
+
+
+  
+  
+
+
+    
+  
+
+
+}
+
+
+
+
+
+
+
+
+
+// src/types/index.ts
+import { type Role, type User } from "./user"
+
+
+export { type User, type Role }
+
+
+export type SidebarState = "expanded" | "icons" | "collapsed"
+
+
+
+
+
+
+
+
+
+
+// src/types/reset.d.ts
+import "@total-typescript/ts-reset"
+
+
+
+
+
+
+
+
+
+
+// src/stores/sidebarStore.ts
+
+import { SidebarState } from "@/types"
+import { create } from "zustand"
+import { persist } from "zustand/middleware"
+
+interface SidebarStore {
+  state: SidebarState
+  setState: (newState: SidebarState) => void
+}
+
+export const useSidebarStore = create<SidebarStore>()(
+  persist(
+    set => ({
+      state: "expanded",
+      setState: state => set({ state }),
+    }),
+    {
+      name: "sidebar",
+    }
+  )
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/types/user.ts
+export type User = {
+  id: string
+  name: string
+  email: string
+  emailVerified: Date
+  image: string
+  password: string
+  hashedPassword: string
+  role: Role
+  
+}
+
+
+
+export type Role = "USER" | "MANAGER" | "ADMIN" | "SUPERADMIN" | "SYSTEM"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/utils/actions.ts
+
+
+import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
+import { User } from "@prisma/client"
+import bcrypt from "bcrypt"
+import { signIn } from "@/lib/auth/auth"
+import prismadb from "@/lib/prisma/prismadb"
+
+export const authenticate = async loginDetails => {
+  const { email, password } = loginDetails
+  const lowerCaseEmail = email.toLowerCase()
+
+  try {
+    await signIn("credentials", { email: lowerCaseEmail, password, redirect: false })
+  } catch (err) {
+    const error = new Error("Failed to login")
+    error.code = "452"
+    throw error.code
+  }
+  redirect("/dashboard")
+}
+
+export const register = async registerDetails => {
+  const { name, email, password } = registerDetails
+  const lowerCaseEmail = email.toLowerCase()
+  const checkEmail = await prismadb.user.findUnique({
+    where: {
+      email: lowerCaseEmail,
+    },
+  })
+
+  if (checkEmail) {
+    redirect("/register?failed=duplicate-email")
+    
+  }
+
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+
+  const newUser = await prismadb.user.create({
+    data: {
+      name,
+      email: lowerCaseEmail,
+      hashedPassword,
+    },
+  })
+
+  await signIn("credentials", { email: lowerCaseEmail, password: registerDetails.password, redirect: false })
+
+  
+
+  
+  redirect("/dashboard")
+}
+
+
+
+
+
+
+
+
+
+
+// src/utils/delay.ts
+export async function delay(ms: number) {
+  return new Promise<void>(resolve => {
+    if (ms < 0) {
+      throw new Error("ms must be non-negative")
+    }
+    setTimeout(() => resolve(), ms)
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/utils/todoUtilsServer.ts
+
+
+"use server"
+
+import { auth, signOut } from "@/lib/auth/auth"
+
+import { authenticate, register } from "./actions"
+
+export async function registerServerAct(registerDetails) {
+  const { name, email, password } = registerDetails
+  return await register({
+    name,
+    email,
+    password,
+  })
+}
+
+export async function authServerAct(loginDetails) {
+  return await authenticate(loginDetails)
+}
+
+export async function getSessionServerAct() {
+  const user = await auth()
+  return user
+}
+
+export async function signOutServerAct() {
+  return await signOut()
+}
+
+
+
+
+
+
+
+
+
+
+// src/utils/zustand.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// next.config.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (process.env.NODE_ENV === "development") {
+  console.log("info  - lanUrl:", `https:
+}
+
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+
+  experimental: {
+    
+    
+  },
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+
+  
+  
+  
+  
+  
+  
+  
+  
+  compiler: {
+    
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      { protocol: "https", hostname: "*" },
+      { protocol: "http", hostname: "*" },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        pathname: "/my-files

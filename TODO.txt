@@ -1,0 +1,29 @@
+Для поиска кода на Github
+
+https://github.com/dracoalv/next-auth-beta/
+
+https://github.com/typle/next-auth-beta/tree/main
+
+https://github.com/ktisakib/nextart
+
+next-auth": "^5.0.0-beta
+next-auth": "5.0.0-beta.4
+NextAuth(authConfig).auth
+extAuth from 'next-auth'
+extUrl.pathname.startsWith('/dashboard')
+export const { auth, signIn, signOut } = NextAuth({
+  ...authConfig,
+   async authorize(credentials)
+import type { NextAuthConfig } from "next-auth";
+
+
+default NextAuth(authConfig).auth
+nextUrl.pathname.startsWith(
+export const { auth, signIn, signOut } = NextAuth({
+async authorize(credentials)
+import type { NextAuthConfig } from 'next-auth';
+
+
+https://avatars.githubusercontent.com/u/9510939?s=180&v=4
+https://atlantsoftware.com/portfolio/1
+https://e-kontur.ru/possibilities
