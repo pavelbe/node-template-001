@@ -23,12 +23,14 @@ Use these commands to manage the project:
 - `npm run clean`: Cleans the `dist` directory and related configuration files.
 - `npm run build`: Builds the TypeScript project.
 - `npm start`: Runs the built application from the `dist` directory.
+- `npm run dev`: Starts the project in development mode.
 
 ### pnpm
 - `pnpm run clean-build`: Equivalent to `npm run clean-build`.
 - `pnpm run clean`: Equivalent to `npm run clean`.
 - `pnpm run build`: Equivalent to `npm run build`.
 - `pnpm start`: Equivalent to `npm start`.
+- `pnpm run dev`: Equivalent to `npm run dev`.
 
 ## TypeScript Configuration
 The `tsconfig.json` file is set up to support modern JavaScript and TypeScript standards, providing a flexible and powerful development environment.
@@ -38,11 +40,16 @@ The `tsconfig.json` file is set up to support modern JavaScript and TypeScript s
 1. Clone the repository: git clone https://github.com/pavelbe/node-template-001.git
 
 2. Install dependencies:
-npm install
-# or
-pnpm install
+   npm install
+   # or
+   pnpm install
 
 3. Run build and launch the project:
-npm run clean-build
-# or
-pnpm run clean-build
+   npm run clean-build
+   # or
+   pnpm run clean-build
+
+4. Start the project in development mode:
+   npm run dev
+   # or
+   pnpm run dev

@@ -2,14 +2,14 @@
   "node_modules": true,
   "type": "module",
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es2021",
     "lib": [
-      "ES6",
+      "es2021",
       "dom"
     ],
     "types": ["node"],
     "moduleResolution": "node",
-    "module": "ESNext",
+    "module": "esnext",
     "rootDir": "./src",
 
     "allowJs": true,
@@ -50,7 +50,7 @@
       "@/commands/*": ["src/commands/*"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src/**/*", "./src/*"],
   "exclude": ["node_modules"]
 //  "exclude": ["./out/**/*", "./node_modules/**/*"],
 }
