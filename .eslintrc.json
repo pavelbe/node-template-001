@@ -14,11 +14,11 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "crlf",
+        "endOfLine": "auto",
         "singleQuote": true,
         "semi": false,
         "tabWidth": 2,
-        "trailingComma": "es5",
+        "trailingComma": "none",
         "arrowParens": "avoid"
       }
     ],

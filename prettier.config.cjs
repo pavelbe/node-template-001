@@ -2,7 +2,7 @@
 /** @type {import('prettier').Config} */
 
 module.exports = {
-  endOfLine: "crlf",
+  endOfLine: "auto",
   // endOfLine: "CRLF",
   semi: false,
   singleQuote: true,
@@ -11,7 +11,7 @@ module.exports = {
 
   tabWidth: 2,
   // tabWidth: 4, попробовать использовать 4 таба
-  trailingComma: "es5",
+  trailingComma: "none",
   arrowParens: "avoid",
   proseWrap: "always",
   // printWidth: 120, попробовать 120

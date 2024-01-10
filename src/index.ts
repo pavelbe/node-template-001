@@ -1,10 +1,10 @@
 // src/index.ts
 
-import { start } from '@/commands/startCommand'
+import { start } from "@/commands/startCommand"
 
-import { test } from './commands/testCommand'
+import { test } from "./commands/testCommand"
 
-console.log('👋 Hello world...')
+console.log("👋 Hello world...")
 
 const startBot = () => {
   start()
