@@ -3,10 +3,7 @@
   "type": "module",
   "compilerOptions": {
     "target": "es2021",
-    "lib": [
-      "es2021",
-      "dom"
-    ],
+    "lib": ["es2021", "dom"],
     "types": ["node"],
     "moduleResolution": "node",
     "module": "esnext",
@@ -52,5 +49,5 @@
   },
   "include": ["./src/**/*", "./src/*"],
   "exclude": ["node_modules"]
-//  "exclude": ["./out/**/*", "./node_modules/**/*"],
+  //  "exclude": ["./out/**/*", "./node_modules/**/*"],
 }

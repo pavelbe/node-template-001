@@ -33,7 +33,5 @@ module.exports = {
     "^[./]",
   ],
   importOrderParserPlugins: ["typescript", "decorators-legacy"],
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports"
-  ],
+  plugins: ["@ianvs/prettier-plugin-sort-imports"],
 }

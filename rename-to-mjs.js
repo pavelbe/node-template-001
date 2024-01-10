@@ -3,25 +3,25 @@
 // rename-to-mjs - renames .js to .mjs and updates imports to support the JavaScript module stack.
 // rename-to-mjs - переименовывает .js в .mjs и обновляет импорты для поддержки модульного стека JavaScript.
 
-import { promises as fs } from 'fs'
-import path from 'path'
+import { promises as fs } from "fs"
+import path from "path"
 
 // import messages from './messages.json' with { type: 'json' }
 
 async function loadMessages() {
-  const data = await fs.readFile('./messages.json', 'utf-8')
+  const data = await fs.readFile("./messages.json", "utf-8")
   return JSON.parse(data)
 }
 
 const messages = await loadMessages()
 
-const directory = 'dist'
+const directory = "dist"
 const importPathCache = new Map()
-const language = process.argv.includes('--ru') ? 'ru' : 'en'
+const language = process.argv.includes("--ru") ? "ru" : "en"
 
 function getMessage(key, placeholders = {}) {
   let message = messages[language][key]
-  Object.keys(placeholders).forEach(placeholder => {
+  Object.keys(placeholders).forEach((placeholder) => {
     message = message.replace(`{${placeholder}}`, placeholders[placeholder])
   })
   return message
@@ -33,10 +33,10 @@ async function updateImportPath(importPath) {
   }
 
   let updatedPath = importPath
-  if (importPath.startsWith('@/')) {
-    updatedPath = updatedPath.replace('@/', './')
+  if (importPath.startsWith("@/")) {
+    updatedPath = updatedPath.replace("@/", "./")
   }
-  updatedPath = updatedPath.endsWith('.mjs')
+  updatedPath = updatedPath.endsWith(".mjs")
     ? updatedPath
     : `${updatedPath}.mjs`
 
@@ -59,11 +59,11 @@ async function updateImports(content, filePath) {
     //   `Файл: ${filePath}\nИзмененный импорт: ${oldImport} -> ${newImport}`
     // )
     console.log(
-      getMessage('fileChanged', {
+      getMessage("fileChanged", {
         filePath: filePath,
         oldImport: oldImport,
         newImport: newImport,
-      })
+      }),
     )
   }
 
@@ -72,39 +72,39 @@ async function updateImports(content, filePath) {
 
 async function processFile(fullPath) {
   try {
-    let content = await fs.readFile(fullPath, 'utf8')
+    let content = await fs.readFile(fullPath, "utf8")
     content = await updateImports(content, fullPath)
-    const newPath = fullPath.replace('.js', '.mjs')
-    await fs.writeFile(newPath, content, 'utf8')
+    const newPath = fullPath.replace(".js", ".mjs")
+    await fs.writeFile(newPath, content, "utf8")
     await fs.unlink(fullPath)
     // console.log(`Переименовано: ${fullPath} -> ${newPath}`)
     console.log(
-      getMessage('fileRenamed', {
+      getMessage("fileRenamed", {
         fullPath: fullPath,
         newPath: newPath,
-      })
+      }),
     )
   } catch (error) {
     // console.error(`Ошибка обработки файла ${fullPath}:`, error)
     console.error(
-      getMessage('fileProcessingError', {
+      getMessage("fileProcessingError", {
         fullPath: fullPath,
         error: error,
-      })
+      }),
     )
   }
 }
 
 async function renameFilesInDirectory(dir) {
   const files = await fs.readdir(dir, { withFileTypes: true })
-  const tasks = files.map(file => {
+  const tasks = files.map((file) => {
     const fullPath = path.join(dir, file.name)
     if (file.isDirectory()) {
       return renameFilesInDirectory(fullPath)
     } else if (
-      file.name.endsWith('.js') &&
-      !file.name.endsWith('.d.ts') &&
-      !file.name.endsWith('.js.map')
+      file.name.endsWith(".js") &&
+      !file.name.endsWith(".d.ts") &&
+      !file.name.endsWith(".js.map")
     ) {
       return processFile(fullPath)
     }
@@ -117,10 +117,10 @@ async function main() {
     await fs.access(directory)
     await renameFilesInDirectory(directory)
     // console.log('Все файлы успешно переименованы в .mjs и обновлены импорты')
-    console.log(getMessage('allFilesRenamed'))
+    console.log(getMessage("allFilesRenamed"))
   } catch (error) {
     // console.error('Произошла ошибка:', error)
-    console.error(getMessage('genericError', { error: error }))
+    console.error(getMessage("genericError", { error: error }))
     process.exit(1)
   }
 }
@@ -128,10 +128,10 @@ async function main() {
 main()
   .then(() => {
     // console.log('Скрипт выполнен успешно.')
-    console.log(getMessage('scriptCompleted'))
+    console.log(getMessage("scriptCompleted"))
   })
-  .catch(error => {
+  .catch((error) => {
     // console.error('Ошибка выполнения скрипта:', error)
-    console.error(getMessage('scriptExecutionError', { error: error }))
+    console.error(getMessage("scriptExecutionError", { error: error }))
     process.exit(1)
   })
