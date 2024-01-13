@@ -3,7 +3,12 @@
     "node": true,
     "es2022": true
   },
-  "extends": ["prettier", "plugin:@typescript-eslint/recommended-type-checked"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "eslint-config-prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -11,18 +16,20 @@
   "rules": {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto",
-        "singleQuote": true,
-        "semi": false,
-        "tabWidth": 2,
-        "trailingComma": "none",
-        "arrowParens": "avoid"
-      }
-    ],
-    "unused-imports/no-unused-imports": "error",
+    "prettier/prettier": "error",
+    //    "prettier/prettier": [
+    //      "error",
+    //      {
+    //        "endOfLine": "auto",
+    //        "singleQuote": true,
+    //        "semi": false,
+    //        "tabWidth": 2,
+    //        "trailingComma": "none",
+    //        "arrowParens": "avoid"
+    //      }
+    //    ],
+    //    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "off",
     "unused-imports/no-unused-vars": "off"
   },
   "plugins": ["@typescript-eslint", "unused-imports", "prettier"],

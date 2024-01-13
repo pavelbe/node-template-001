@@ -17,7 +17,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@total-typescript/ts-reset": "^0.5.1",
-    "@types/node": "^20.10.8",
+    "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
@@ -26,12 +26,15 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-unused-imports": "^3.0.0",
     "esm": "^3.2.25",
-    "prettier": "3.1.1",
+    "prettier": "3.2.1",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   },
   "prettier": {
     "semi": false

@@ -8,7 +8,6 @@
     "moduleResolution": "node",
     "module": "esnext",
     "rootDir": "./src",
-
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -37,14 +36,23 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
-
     "typeRoots": ["node_modules/@types"],
     "checkJs": true,
     "plugins": [],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/commands/*": ["src/commands/*"]
+      //      "@/*": [
+      //        "src/*"
+      //      ],
+      //      "@/commands/*": [
+      //        "src/commands/*"
+      //      ],
+      //      "@/helpers/*": [
+      //        "src/helpers/*"
+      //      ],
+      //      "@/types/*": [
+      //        "src/types/*"
+      //      ]
     }
   },
   "include": ["./src/**/*", "./src/*"],

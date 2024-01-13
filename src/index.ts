@@ -1,6 +1,6 @@
 // src/index.ts
 
-import { start } from "@/commands/startCommand"
+import { start } from "./commands/startCommand"
 
 import { test } from "./commands/testCommand"
 

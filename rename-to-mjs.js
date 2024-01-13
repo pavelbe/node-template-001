@@ -1,12 +1,10 @@
-// rename-to-mjs.js (6 ver.)
+// rename-to-mjs.js (7 ver.)
 
 // rename-to-mjs - renames .js to .mjs and updates imports to support the JavaScript module stack.
 // rename-to-mjs - переименовывает .js в .mjs и обновляет импорты для поддержки модульного стека JavaScript.
 
 import { promises as fs } from "fs"
 import path from "path"
-
-// import messages from './messages.json' with { type: 'json' }
 
 async function loadMessages() {
   const data = await fs.readFile("./messages.json", "utf-8")
@@ -27,18 +25,49 @@ function getMessage(key, placeholders = {}) {
   return message
 }
 
-async function updateImportPath(importPath) {
-  if (importPathCache.has(importPath)) {
-    return importPathCache.get(importPath)
+async function updateImportPath(importPath, currentFilePath) {
+  if (importPath.startsWith("@/")) {
+    importPath = importPath.slice(2) // Удаляем '@/'
+  }
+
+  const builtInModules = [
+    "fs",
+    "path",
+    "os",
+    "http",
+    "https",
+    "url",
+    "querystring",
+    "stream",
+    "util",
+    "crypto",
+    "puppeteer",
+    "axios",
+    "stream",
+    "process",
+    "net",
+    "module",
+    "buffer",
+    "zlib",
+  ]
+
+  if (builtInModules.includes(importPath)) {
+    return importPath
   }
 
   let updatedPath = importPath
-  if (importPath.startsWith("@/")) {
-    updatedPath = updatedPath.replace("@/", "./")
+  if (importPath.startsWith("./") || importPath.startsWith("../")) {
+    const dir = path.dirname(currentFilePath)
+    updatedPath = path.resolve(dir, importPath)
+    updatedPath = path.relative(directory, updatedPath)
+    updatedPath = updatedPath.replace(/\\/g, "/")
+    if (!updatedPath.startsWith("./") && !updatedPath.startsWith("../")) {
+      updatedPath = "./" + updatedPath
+    }
+    updatedPath += updatedPath.endsWith(".mjs") ? "" : ".mjs"
+  } else {
+    updatedPath = `./${importPath}.mjs`
   }
-  updatedPath = updatedPath.endsWith(".mjs")
-    ? updatedPath
-    : `${updatedPath}.mjs`
 
   importPathCache.set(importPath, updatedPath)
   return updatedPath
@@ -51,13 +80,10 @@ async function updateImports(content, filePath) {
   for (const match of matches) {
     const oldImport = match[0]
     const importPath = match[1]
-    const newImportPath = await updateImportPath(importPath)
+    const newImportPath = await updateImportPath(importPath, filePath)
     const newImport = `from "${newImportPath}"`
 
     content = content.replace(oldImport, newImport)
-    // console.log(
-    //   `Файл: ${filePath}\nИзмененный импорт: ${oldImport} -> ${newImport}`
-    // )
     console.log(
       getMessage("fileChanged", {
         filePath: filePath,
@@ -74,24 +100,12 @@ async function processFile(fullPath) {
   try {
     let content = await fs.readFile(fullPath, "utf8")
     content = await updateImports(content, fullPath)
-    const newPath = fullPath.replace(".js", ".mjs")
+    const newPath = fullPath.replace(/\.js$/, ".mjs")
     await fs.writeFile(newPath, content, "utf8")
     await fs.unlink(fullPath)
-    // console.log(`Переименовано: ${fullPath} -> ${newPath}`)
-    console.log(
-      getMessage("fileRenamed", {
-        fullPath: fullPath,
-        newPath: newPath,
-      }),
-    )
+    console.log(getMessage("fileRenamed", { fullPath, newPath }))
   } catch (error) {
-    // console.error(`Ошибка обработки файла ${fullPath}:`, error)
-    console.error(
-      getMessage("fileProcessingError", {
-        fullPath: fullPath,
-        error: error,
-      }),
-    )
+    console.error(getMessage("fileProcessingError", { fullPath, error }))
   }
 }
 
@@ -116,22 +130,16 @@ async function main() {
   try {
     await fs.access(directory)
     await renameFilesInDirectory(directory)
-    // console.log('Все файлы успешно переименованы в .mjs и обновлены импорты')
     console.log(getMessage("allFilesRenamed"))
   } catch (error) {
-    // console.error('Произошла ошибка:', error)
-    console.error(getMessage("genericError", { error: error }))
+    console.error(getMessage("genericError", { error }))
     process.exit(1)
   }
 }
 
 main()
-  .then(() => {
-    // console.log('Скрипт выполнен успешно.')
-    console.log(getMessage("scriptCompleted"))
-  })
+  .then(() => console.log(getMessage("scriptCompleted")))
   .catch((error) => {
-    // console.error('Ошибка выполнения скрипта:', error)
-    console.error(getMessage("scriptExecutionError", { error: error }))
+    console.error(getMessage("scriptExecutionError", { error }))
     process.exit(1)
   })

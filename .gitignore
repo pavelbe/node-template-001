@@ -3,16 +3,10 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
-.yarn/install-state.gz
-
 
 # production
 /dist
 
-# misc
-.DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -26,7 +20,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-.vscode
-
-.idea
