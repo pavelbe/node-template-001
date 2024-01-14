@@ -30,7 +30,7 @@
     //    ],
     //    "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-imports": "off",
-    "unused-imports/no-unused-vars": "off"
+    "unused-imports/no-unused-vars": "warn"
   },
   "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
   "settings": {

@@ -1,4 +1,4 @@
-// rename-to-mjs.js (8 ver.)
+// rename-to-mjs.js (7 ver.)
 
 // rename-to-mjs - renames .js to .mjs and updates imports to support the JavaScript module stack.
 // rename-to-mjs - переименовывает .js в .mjs и обновляет импорты для поддержки модульного стека JavaScript.
@@ -6,15 +6,16 @@
 import { promises as fs } from "fs"
 import path from "path"
 
-const directory = path.resolve("dist")
+async function loadMessages() {
+  const data = await fs.readFile("./messages.json", "utf-8")
+  return JSON.parse(data)
+}
+
+const messages = await loadMessages()
+
+const directory = "dist"
 const importPathCache = new Map()
 const language = process.argv.includes("--ru") ? "ru" : "en"
-let messages
-
-async function loadMessages() {
-  const data = await fs.readFile(path.resolve("./messages.json"), "utf-8")
-  messages = JSON.parse(data)
-}
 
 function getMessage(key, placeholders = {}) {
   let message = messages[language][key]
@@ -25,24 +26,47 @@ function getMessage(key, placeholders = {}) {
 }
 
 async function updateImportPath(importPath, currentFilePath) {
-  if (importPathCache.has(importPath)) {
-    return importPathCache.get(importPath)
+  if (importPath.startsWith("@/")) {
+    importPath = importPath.slice(2) // Удаляем '@/'
+  }
+
+  const builtInModules = [
+    "fs",
+    "path",
+    "os",
+    "http",
+    "https",
+    "url",
+    "querystring",
+    "stream",
+    "util",
+    "crypto",
+    "puppeteer",
+    "axios",
+    "stream",
+    "process",
+    "net",
+    "module",
+    "buffer",
+    "zlib",
+  ]
+
+  if (builtInModules.includes(importPath)) {
+    return importPath
   }
 
   let updatedPath = importPath
-  if (importPath.startsWith("@/")) {
-    // Преобразуем алиас в относительный путь относительно текущего файла
-    const aliasTarget = path.join(directory, importPath.slice(2))
-    updatedPath = path.relative(path.dirname(currentFilePath), aliasTarget)
-  }
-
-  if (!updatedPath.startsWith(".")) {
-    updatedPath = "./" + updatedPath
-  }
-
-  updatedPath = updatedPath.replace(/\\/g, "/")
-  if (!updatedPath.endsWith(".mjs")) {
-    updatedPath += ".mjs"
+  if (importPath.startsWith("./") || importPath.startsWith("../")) {
+    const dir = path.dirname(currentFilePath)
+    updatedPath = path.resolve(dir, importPath)
+    updatedPath = path.relative(directory, updatedPath)
+    updatedPath = updatedPath.replace(/\\/g, "/")
+    if (!updatedPath.startsWith("./") && !updatedPath.startsWith("../")) {
+      updatedPath = "./" + updatedPath
+    }
+    updatedPath += updatedPath.endsWith(".mjs") ? "" : ".mjs"
+  } else {
+    updatedPath = `./${importPath}.mjs`
   }
 
   importPathCache.set(importPath, updatedPath)
@@ -50,13 +74,15 @@ async function updateImportPath(importPath, currentFilePath) {
 }
 
 async function updateImports(content, filePath) {
-  const importRegex = /from\s+["']([^"']+)["']/g
-  let matches
-  while ((matches = importRegex.exec(content)) !== null) {
-    const oldImport = matches[0]
-    const importPath = matches[1]
+  const importRegex = /from ["'](\.?\/?.*?)["']/g
+  let matches = [...content.matchAll(importRegex)]
+
+  for (const match of matches) {
+    const oldImport = match[0]
+    const importPath = match[1]
     const newImportPath = await updateImportPath(importPath, filePath)
     const newImport = `from "${newImportPath}"`
+
     content = content.replace(oldImport, newImport)
     console.log(
       getMessage("fileChanged", {
@@ -66,6 +92,7 @@ async function updateImports(content, filePath) {
       }),
     )
   }
+
   return content
 }
 
@@ -79,35 +106,34 @@ async function processFile(fullPath) {
     console.log(getMessage("fileRenamed", { fullPath, newPath }))
   } catch (error) {
     console.error(getMessage("fileProcessingError", { fullPath, error }))
-    throw error // Прерываем выполнение текущей задачи
   }
 }
 
 async function renameFilesInDirectory(dir) {
   const files = await fs.readdir(dir, { withFileTypes: true })
-  for (const file of files) {
+  const tasks = files.map((file) => {
     const fullPath = path.join(dir, file.name)
     if (file.isDirectory()) {
-      await renameFilesInDirectory(fullPath)
+      return renameFilesInDirectory(fullPath)
     } else if (
       file.name.endsWith(".js") &&
       !file.name.endsWith(".d.ts") &&
       !file.name.endsWith(".js.map")
     ) {
-      await processFile(fullPath)
+      return processFile(fullPath)
     }
-  }
+  })
+  await Promise.all(tasks)
 }
 
 async function main() {
   try {
-    await loadMessages()
-    await fs.access(directory, fs.constants.W_OK)
+    await fs.access(directory)
     await renameFilesInDirectory(directory)
     console.log(getMessage("allFilesRenamed"))
   } catch (error) {
     console.error(getMessage("genericError", { error }))
-    process.exit(1)
+    throw new Error(`Ошибка: ${error.message}`)
   }
 }
 
@@ -115,5 +141,5 @@ main()
   .then(() => console.log(getMessage("scriptCompleted")))
   .catch((error) => {
     console.error(getMessage("scriptExecutionError", { error: error.message }))
-    process.exit(1)
+    throw new Error(`Ошибка: ${error.message}`)
   })
