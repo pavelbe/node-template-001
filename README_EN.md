@@ -26,7 +26,6 @@ To get started with this template, follow these steps:
 4. Start the project in development mode:
    bash npm run dev
 
-
 ## Support This Project
 
 If you find this project helpful, please consider giving it a star on GitHub. Your support is greatly appreciated and motivates continuous improvement and development of new useful tools.

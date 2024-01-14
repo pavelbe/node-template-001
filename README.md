@@ -16,7 +16,6 @@ To get started with this template, clone the repository and install the dependen
 
 bash git clone https://github.com/pavelbe/node-template-001.git cd node-template-001 npm install
 
-
 ## Usage
 
 Here are some useful commands to manage the project:
@@ -46,7 +45,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 The `rename-to-mjs.js` script supports localization for console log messages in English (default) and Russian. Use the `--ru` flag for Russian language output:
 
 bash node rename-to-mjs.js --ru
-
 
 ## Contributing
 
