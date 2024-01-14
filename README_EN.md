@@ -1,19 +1,31 @@
+// README_EN.md
+
 # Node Template 001
 
-This is a Node.js template project configured to use TypeScript and modern JavaScript features.
+This is a Node.js template project configured to use TypeScript and modern JavaScript features for building scalable and high-performance applications.
 
 ## Features
 
-- **TypeScript**: Leveraging TypeScript for type safety and improved code quality.
-- **ES6 and Above**: Configured to use ECMAScript 6 and later.
+- **TypeScript**: Full TypeScript support for type safety and improved code quality.
+- **ES6 and Above**: Configured to use ECMAScript 6 features and beyond.
 - **Script `rename-to-mjs.js`**: Automates converting `.js` files to `.mjs` and updates imports for ECMAScript modules support.
 
-## Script `rename-to-mjs.js`
+## Getting Started
 
-The script renames `.js` files to `.mjs` and updates import paths in project files. It uses asynchronous operations for efficient file processing and caches updated import paths for performance improvement.
+To get started with this template, follow these steps:
 
-- Run `node rename-to-mjs.js` for English language output (default).
-- Run `node rename-to-mjs.js --ru` for Russian language output.
+1. Clone the repository:
+   bash git clone https://github.com/pavelbe/node-template-001.git
+
+2. Install dependencies:
+   bash npm install
+
+3. Run build and launch the project:
+   bash npm run clean-build
+
+4. Start the project in development mode:
+   bash npm run dev
+
 
 ## Support This Project
 
@@ -25,43 +37,18 @@ If you find this project helpful, please consider giving it a star on GitHub. Yo
 
 Use these commands to manage the project:
 
-### npm
-
 - `npm run clean-build`: Cleans the `dist` directory and performs project build.
-- `npm run clean`: Cleans the `dist` directory and related configuration files.
-- `npm run build`: Builds the TypeScript project.
 - `npm start`: Runs the built application from the `dist` directory.
-- `npm run dev`: Starts the project in development mode.
-
-### pnpm
-
-- `pnpm run clean-build`: Equivalent to `npm run clean-build`.
-- `pnpm run clean`: Equivalent to `npm run clean`.
-- `pnpm run build`: Equivalent to `npm run build`.
-- `pnpm start`: Equivalent to `npm start`.
-- `pnpm run dev`: Equivalent to `npm run dev`.
+- `npm run dev`: Starts the project in development mode with hot reloading.
 
 ## TypeScript Configuration
 
 The `tsconfig.json` file is set up to support modern JavaScript and TypeScript standards, providing a flexible and powerful development environment.
 
-## Installation and Launch
+## Contributing
 
-```bash
-1. Clone the repository: git clone https://github.com/pavelbe/node-template-001.git
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest improvements.
 
-2. Install dependencies:
-   npm install
-   # or
-   pnpm install
+## License
 
-3. Run build and launch the project:
-   npm run clean-build
-   # or
-   pnpm run clean-build
-
-4. Start the project in development mode:
-   npm run dev
-   # or
-   pnpm run dev
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
