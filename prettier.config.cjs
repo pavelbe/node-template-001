@@ -16,7 +16,7 @@ module.exports = {
   proseWrap: "always",
   // printWidth: 120, попробовать 120
   // printWidth: 80,
-  printWidth: 80,
+  printWidth: 120,
   bracketSameLine: false,
   // "bracketSameLine": true, попробовать true - указывает на то, что Prettier должен помещать закрывающую скобку в тот же строку, что и последний атрибут элемента, вместо того чтобы помещать ее на новую строку.
   bracketSpacing: true,
