@@ -5,6 +5,7 @@
 
 import { promises as fs } from "fs"
 import path from "path"
+import inquirer from "inquirer"
 
 const directory = path.resolve("dist")
 const importPathCache = new Map()
@@ -24,9 +25,37 @@ function getMessage(key, placeholders = {}) {
   return message
 }
 
+// Список стандартных библиотек, импорты для которых не должны изменяться
+const builtInModules = [
+  "fs",
+  "path",
+  "os",
+  "http",
+  "https",
+  "url",
+  "querystring",
+  "stream",
+  "util",
+  "crypto",
+  "puppeteer",
+  "axios",
+  "process",
+  "net",
+  "module",
+  "buffer",
+  "zlib",
+  "inquirer",
+]
+
 async function updateImportPath(importPath, currentFilePath) {
   if (importPathCache.has(importPath)) {
     return importPathCache.get(importPath)
+  }
+
+  // Проверяем, является ли импорт стандартной библиотекой
+  if (builtInModules.includes(importPath)) {
+    importPathCache.set(importPath, importPath)
+    return importPath
   }
 
   let updatedPath = importPath
