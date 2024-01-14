@@ -4,6 +4,9 @@
     "es2022": true
   },
   "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -59,5 +62,6 @@
     "rename-to-mjs*.js",
     "*.d.ts",
     "prettier.config.d.ts"
-  ]
+  ],
+  "root": true
 }
