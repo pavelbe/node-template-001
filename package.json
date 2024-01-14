@@ -10,6 +10,8 @@
     "build": "tsc && node rename-to-mjs.js",
     "start": "node dist/index.mjs",
     "dev": "tsx watch ./src/index.ts",
+    "---buildtest": "npx tsc",
+    "---starttest": "npm run build && node dist/index.mjs",
     "prettier-check": "prettier --check \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
     "prettier-write": "prettier --write \"**/*.{ts,tsx,mjs,js,jsx,md,mdx,css,scss}\" --cache",
     "eslint": "eslint  \"**/*.{js,ts,tsx}\""
